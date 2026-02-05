@@ -1,13 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Home | Horizontal Shop</title>
 </head>
+
 <body>
-    Hello I am a webpage. This is for testing........
-    I am Mehedi Hasan.
-    good morning.
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="#" class="navbar-logo"><img src="assets/doller-logo2.png" width="80px" height="60px" alt=""
+                    srcset=""></a>
+
+            <ul class="nav-links" id="nav-links">
+                <i class="fa-solid fa-xmark" id="close-menu-btn"></i>
+
+                <li class="nav-item hover-underline active"><a href="/">Home</a></li>
+                <li class="nav-item hover-underline"><a href="/about">About</a></li>
+
+                <li class="nav-item dropdown hover-underline" id="shop-dropdown">
+                    <a href="#">Shop</a>
+                    <!-- <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-item">Electronics</a></li>
+                        <li><a href="#" class="dropdown-item">Clothing</a></li>
+                    </ul> -->
+                </li>
+                <li class="nav-item hover-underline">Contact</li>
+                <li class="nav-item hover-underline"><i class="far fa-user profile-icon"></i>My Profile</li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <i class="fa fa-search search-icon"></i>
+                </div>
+
+                <div class="menu-toggle" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+
+                <div class="cart-icon-wrapper">
+                    <i class="fa-solid fa-cart-shopping cart-icon"></i>
+                    <span class="cart-badge">3</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <!-- Main Slider Wrapper -->
+        <main class="slider-wrapper" id="sliderWrapper">
+
+            <!-- Slides Track -->
+            <div class="slides-container" id="slidesTrack">
+
+                <!-- Slide 1 -->
+                <div class="slide active">
+                    <img src="/assets/hero images/2.png">
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <img src="/assets/hero images/3.png">
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <img src="/assets/hero images/4.png">
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="slide">
+                    <img src="/assets/hero images/5.png">
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="slide">
+                    <img src="/assets/hero images/6.png">
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button class="slider-btn prev-btn" id="prevBtn" aria-label="Previous Slide">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button class="slider-btn next-btn" id="nextBtn" aria-label="Next Slide">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+
+            <!-- Pagination Dots -->
+            <div class="indicators" id="indicators">
+            </div>
+
+        </main>
+
+        <section class="why-shop-section" id="whyShopUs">
+            <div class="section-header">
+                <!-- <span class="section-subtitle">Our Guarantees</span> -->
+                <h2 class="section-title">Why Shop With Us?</h2>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="features-grid">
+
+                <!-- Feature 1: Premium Quality -->
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423z" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Premium Quality</h3>
+                    <p class="feature-desc">We source only the finest materials. Our products are rigorously tested for
+                        durability and excellence.</p>
+                </div>
+
+                <!-- Feature 2: Secure Payment -->
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <!-- Lock Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Secure Payment</h3>
+                    <p class="feature-desc">Your transactions are safe with us. We use advanced SSL encryption for total
+                        security.</p>
+                </div>
+
+                <!-- Feature 3: 24/7 Support -->
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <!-- Headset Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">24 / 7 Support</h3>
+                    <p class="feature-desc">Have questions? Our dedicated support team is available around the clock to
+                        assist you.</p>
+                </div>
+
+                <!-- Feature 4: Return Policy -->
+                <!-- <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">30 Days Return</h3>
+                    <p class="feature-desc">Not satisfied? Return any item within 30 days for a full refund, no
+                        questions asked.</p>
+                </div> -->
+
+            </div>
+        </section>
+    </div>
+
+    <script src="index.js"></script>
 </body>
+
 </html>
