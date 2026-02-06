@@ -80,4 +80,14 @@
      .feature-card {
          padding: 30px 20px;
      }
+
+     .dot{
+        width: 7px;
+        height: 7px;
+     }
+
+     .slider-btn{
+        width: 35px;
+        height: 35px;
+     }
  }
