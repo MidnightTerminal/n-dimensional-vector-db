@@ -1,7 +1,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
 
  :root {
-     --primary-color: #2563eb;
+     /* --primary-color: #2563eb; */
      --text-dark: #1f2937;
      --bg-white: #ffffff;
      --bg-light: #f3f4f6;
@@ -19,6 +19,27 @@
      font-family: 'Segoe UI', sans-serif;
      background-color: var(--bg-light);
      color: var(--text-dark);
+ }
+
+ :root {
+     --primary-color: #1a1a1a;
+     --accent-color: #e63946;
+     --cta-color: #333333;
+     --cta-hover: #000000;
+     --bg-color: #ffffff;
+     --card-bg: #ffffff;
+     --secondary-text: #757575;
+     --border-color: #f0f0f0;
+     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+     --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+     --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+     --transition: all 0.3s ease;
+ }
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
  }
 
  a {
@@ -484,3 +505,395 @@
      color: #334155;
  }
 
+ /* --- Section Container --- */
+ .showcase-section {
+     width: 90%;
+     max-width: 1400px;
+     /* padding: 40px 0; */
+     margin: 0 auto;
+ }
+
+ /* --- Header: Title & View All --- */
+ .section-header {
+     display: flex;
+     justify-content: space-between;
+     align-items: flex-end;
+     margin-bottom: 24px;
+     padding: 0 10px;
+ }
+
+ .section-title h2 {
+     font-size: 1.75rem;
+     font-weight: 700;
+     margin-bottom: 4px;
+     letter-spacing: -0.5px;
+ }
+
+ .section-title p {
+     color: var(--secondary-text);
+     font-size: 0.95rem;
+ }
+
+ .view-all-link {
+     text-decoration: none;
+     color: var(--primary-color);
+     font-weight: 600;
+     font-size: 0.9rem;
+     border-bottom: 2px solid transparent;
+     transition: var(--transition);
+     display: inline-flex;
+     align-items: center;
+     gap: 4px;
+ }
+
+ .view-all-link:hover {
+     border-bottom-color: var(--primary-color);
+     color: var(--cta-hover);
+ }
+
+ /* --- Slider Container --- */
+ .slider-container {
+     position: relative;
+     width: 100%;
+ }
+
+ /* Hide scrollbar but keep functionality */
+ .slider-track-wrapper {
+     overflow-x: auto;
+     white-space: nowrap;
+     scroll-behavior: smooth;
+     padding: 10px 5px 30px 5px;
+     /* Bottom padding for shadow space */
+     -ms-overflow-style: none;
+     /* IE and Edge */
+     scrollbar-width: none;
+     /* Firefox */
+ }
+
+ .slider-track-wrapper::-webkit-scrollbar {
+     display: none;
+     /* Chrome, Safari, Opera */
+ }
+
+ .product-list {
+     display: flex;
+     gap: 20px;
+ }
+
+ /* --- Product Card Styling --- */
+ .product-card {
+     flex: 0 0 260px;
+     /* Fixed width for cards */
+     background: var(--card-bg);
+     border: 1px solid var(--border-color);
+     border-radius: 12px;
+     overflow: hidden;
+     position: relative;
+     transition: var(--transition);
+     display: flex;
+     flex-direction: column;
+     scroll-snap-align: start;
+ }
+
+ .product-card:hover {
+     transform: translateY(-5px);
+     box-shadow: var(--shadow-md);
+     border-color: transparent;
+ }
+
+ /* Card Image Area */
+ .card-image-wrapper {
+     position: relative;
+     width: 100%;
+     height: 260px;
+     overflow: hidden;
+     background-color: #f9f9f9;
+ }
+
+ .card-image {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     transition: transform 0.5s ease;
+ }
+
+ .product-card:hover .card-image {
+     transform: scale(1.05);
+ }
+
+ /* Badges */
+ .badge {
+     position: absolute;
+     top: 12px;
+     left: 12px;
+     padding: 4px 8px;
+     border-radius: 4px;
+     font-size: 0.75rem;
+     font-weight: 700;
+     text-transform: uppercase;
+     z-index: 2;
+ }
+
+ .badge-new {
+     background-color: var(--cta-color);
+     color: white;
+ }
+
+ .badge-sale {
+     background-color: var(--accent-color);
+     color: white;
+ }
+
+ /* Wishlist Icon */
+ .wishlist-btn {
+     position: absolute;
+     top: 12px;
+     right: 12px;
+     width: 32px;
+     height: 32px;
+     background: rgba(255, 255, 255, 0.8);
+     backdrop-filter: blur(4px);
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     border: none;
+     transition: var(--transition);
+     z-index: 2;
+ }
+
+ .wishlist-btn:hover {
+     background: #fff;
+     transform: scale(1.1);
+ }
+
+ .wishlist-btn svg {
+     width: 18px;
+     height: 18px;
+     fill: none;
+     stroke: var(--primary-color);
+     stroke-width: 2;
+ }
+
+ .wishlist-btn.active svg {
+     fill: var(--accent-color);
+     stroke: var(--accent-color);
+ }
+
+ /* Card Content */
+ .card-content {
+     padding: 16px;
+     display: flex;
+     flex-direction: column;
+     flex-grow: 1;
+ }
+
+ .product-category {
+     font-size: 0.8rem;
+     color: var(--secondary-text);
+     margin-bottom: 4px;
+     text-transform: uppercase;
+     letter-spacing: 0.5px;
+ }
+
+ .product-title {
+     font-size: 1rem;
+     font-weight: 600;
+     color: var(--primary-color);
+     margin-bottom: 8px;
+     line-height: 1.4;
+     /* Truncate text */
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+ }
+
+ /* Rating */
+ .rating {
+     display: flex;
+     align-items: center;
+     margin-bottom: 12px;
+     font-size: 0.85rem;
+     color: #ffb400;
+ }
+
+ .rating span {
+     margin-left: 4px;
+     color: var(--secondary-text);
+     font-size: 0.8rem;
+ }
+
+ /* Price & Action */
+ .card-footer {
+     margin-top: auto;
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+
+ .price-group {
+     display: flex;
+     flex-direction: column;
+ }
+
+ .current-price {
+     font-weight: 700;
+     font-size: 1.1rem;
+     color: var(--primary-color);
+ }
+
+ .old-price {
+     font-size: 0.85rem;
+     text-decoration: line-through;
+     color: #b0b0b0;
+ }
+
+ .add-cart-btn {
+     background-color: var(--cta-color);
+     color: white;
+     border: none;
+     width: 36px;
+     height: 36px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: var(--transition);
+ }
+
+ .add-cart-btn:hover {
+     background-color: var(--cta-hover);
+     transform: rotate(90deg);
+ }
+
+ /* --- Navigation Arrows --- */
+ .nav-btn {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     width: 44px;
+     height: 44px;
+     border-radius: 50%;
+     background: white;
+     border: 1px solid var(--border-color);
+     box-shadow: var(--shadow-sm);
+     cursor: pointer;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     z-index: 10;
+     opacity: 0;
+     /* Hidden by default on mobile */
+     transition: var(--transition);
+ }
+
+ /* Show arrows on hover of the container (Desktop) */
+ @media (min-width: 1024px) {
+     .slider-container:hover .nav-btn {
+         opacity: 1;
+     }
+ }
+
+ .nav-btn:hover {
+     background-color: var(--primary-color);
+     border-color: var(--primary-color);
+ }
+
+ .nav-btn:hover svg {
+     stroke: white;
+ }
+
+ .nav-btn.prev {
+     left: -22px;
+ }
+
+ .nav-btn.next {
+     right: -22px;
+ }
+
+ .nav-btn svg {
+     width: 20px;
+     height: 20px;
+     stroke: var(--primary-color);
+     stroke-width: 2;
+     fill: none;
+     transition: var(--transition);
+ }
+
+ /* --- Toast Notification --- */
+ .toast-container {
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     z-index: 1000;
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+ }
+
+ .toast {
+     background: #fff;
+     color: var(--primary-color);
+     padding: 16px 20px;
+     border-radius: 8px;
+     box-shadow: var(--shadow-md);
+     border-left: 4px solid var(--cta-color);
+     display: flex;
+     align-items: center;
+     gap: 12px;
+     animation: slideIn 0.3s ease forwards;
+     min-width: 300px;
+ }
+
+ .toast.hide {
+     animation: slideOut 0.3s ease forwards;
+ }
+
+ @keyframes slideIn {
+     from {
+         transform: translateX(100%);
+         opacity: 0;
+     }
+
+     to {
+         transform: translateX(0);
+         opacity: 1;
+     }
+ }
+
+ @keyframes slideOut {
+     from {
+         transform: translateX(0);
+         opacity: 1;
+     }
+
+     to {
+         transform: translateX(100%);
+         opacity: 0;
+     }
+ }
+
+ /* --- Mobile Responsiveness --- */
+ @media (max-width: 768px) {
+     .section-header {
+         flex-direction: column;
+         align-items: flex-start;
+         gap: 10px;
+     }
+
+     .nav-btn {
+         display: none;
+         /* On mobile, rely on swipe */
+     }
+
+     .product-card {
+         flex: 0 0 220px;
+         /* Slightly smaller cards on mobile */
+     }
+
+     .card-image-wrapper {
+         height: 220px;
+     }
+ }

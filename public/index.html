@@ -175,6 +175,198 @@
         </section>
     </div>
 
+    <main class="showcase-section">
+        
+        <!-- Header -->
+        <header class="section-header">
+            <div class="section-title">
+                <h2>Premium Ladies Bags</h2>
+                <p>Discover our latest collection of exclusive handbags.</p>
+            </div>
+            <a href="#" class="view-all-link">View All Products 
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </header>
+
+        <!-- Slider Component -->
+        <div class="slider-container">
+            <!-- Left Arrow -->
+            <button class="nav-btn prev" id="scrollLeft" aria-label="Scroll Left">
+                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+
+            <!-- Scroll Wrapper -->
+            <div class="slider-track-wrapper" id="sliderWrapper">
+                <div class="product-list">
+
+                    <!-- Product 1 -->
+                    <article class="product-card">
+                        <div class="card-image-wrapper">
+                            <span class="badge badge-new">New</span>
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            </button>
+                            <img src="https://picsum.photos/seed/bag1/300/300" alt="Luxury Leather Tote" class="card-image">
+                        </div>
+                        <div class="card-content">
+                            <span class="product-category">Handbags</span>
+                            <h3 class="product-title">Luxury Leather Tote</h3>
+                            <div class="rating">
+                                ★★★★★ <span>(45)</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-group">
+                                    <span class="current-price">$129.00</span>
+                                </div>
+                                <button class="add-cart-btn" onclick="addToCart('Luxury Leather Tote')" aria-label="Add to Cart">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Product 2 -->
+                    <article class="product-card">
+                        <div class="card-image-wrapper">
+                            <span class="badge badge-sale">-20%</span>
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            </button>
+                            <img src="https://picsum.photos/seed/bag2/300/300" alt="Classic Beige Satchel" class="card-image">
+                        </div>
+                        <div class="card-content">
+                            <span class="product-category">Satchels</span>
+                            <h3 class="product-title">Classic Beige Satchel</h3>
+                            <div class="rating">
+                                ★★★★☆ <span>(28)</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-group">
+                                    <span class="current-price">$84.00</span>
+                                    <span class="old-price">$105.00</span>
+                                </div>
+                                <button class="add-cart-btn" onclick="addToCart('Classic Beige Satchel')" aria-label="Add to Cart">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Product 3 -->
+                    <article class="product-card">
+                        <div class="card-image-wrapper">
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            </button>
+                            <img src="https://picsum.photos/seed/bag3/300/300" alt="Evening Clutch" class="card-image">
+                        </div>
+                        <div class="card-content">
+                            <span class="product-category">Clutches</span>
+                            <h3 class="product-title">Evening Clutch Gold</h3>
+                            <div class="rating">
+                                ★★★★★ <span>(12)</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-group">
+                                    <span class="current-price">$59.99</span>
+                                </div>
+                                <button class="add-cart-btn" onclick="addToCart('Evening Clutch Gold')" aria-label="Add to Cart">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Product 4 -->
+                    <article class="product-card">
+                        <div class="card-image-wrapper">
+                            <span class="badge badge-sale">Hot</span>
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            </button>
+                            <img src="https://picsum.photos/seed/bag4/300/300" alt="Canvas Backpack" class="card-image">
+                        </div>
+                        <div class="card-content">
+                            <span class="product-category">Backpacks</span>
+                            <h3 class="product-title">Urban Canvas Backpack</h3>
+                            <div class="rating">
+                                ★★★★☆ <span>(84)</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-group">
+                                    <span class="current-price">$45.00</span>
+                                </div>
+                                <button class="add-cart-btn" onclick="addToCart('Urban Canvas Backpack')" aria-label="Add to Cart">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Product 5 -->
+                    <article class="product-card">
+                        <div class="card-image-wrapper">
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            </button>
+                            <img src="https://picsum.photos/seed/bag5/300/300" alt="Crossbody Mini" class="card-image">
+                        </div>
+                        <div class="card-content">
+                            <span class="product-category">Crossbody</span>
+                            <h3 class="product-title">Mini Crossbody Black</h3>
+                            <div class="rating">
+                                ★★★★★ <span>(56)</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-group">
+                                    <span class="current-price">$79.00</span>
+                                </div>
+                                <button class="add-cart-btn" onclick="addToCart('Mini Crossbody Black')" aria-label="Add to Cart">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Product 6 -->
+                    <article class="product-card">
+                        <div class="card-image-wrapper">
+                            <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            </button>
+                            <img src="https://picsum.photos/seed/bag6/300/300" alt="Designer Purse" class="card-image">
+                        </div>
+                        <div class="card-content">
+                            <span class="product-category">Purses</span>
+                            <h3 class="product-title">Structured Designer Purse</h3>
+                            <div class="rating">
+                                ★★★★☆ <span>(33)</span>
+                            </div>
+                            <div class="card-footer">
+                                <div class="price-group">
+                                    <span class="current-price">$149.00</span>
+                                </div>
+                                <button class="add-cart-btn" onclick="addToCart('Structured Designer Purse')" aria-label="Add to Cart">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- Right Arrow -->
+            <button class="nav-btn next" id="scrollRight" aria-label="Scroll Right">
+                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Container for Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
     <script src="index.js"></script>
 </body>
 
