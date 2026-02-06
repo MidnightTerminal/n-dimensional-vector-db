@@ -46,19 +46,31 @@ function loadCheckoutCart() {
 // Handle Form Submission
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     const submitBtn = document.querySelector('.place-order-btn-large');
     const originalText = submitBtn.innerText;
     submitBtn.innerText = 'Processing...';
     submitBtn.disabled = true;
+    // 1. Get Selected Payment Method
+    const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
+    const trxId = document.getElementById('bkashTrxId').value;
 
-    // 1. Gather Data
+    // 2. Include it in the data object
     const customerData = {
         name: document.getElementById('custName').value,
         email: document.getElementById('custEmail').value,
         phone: document.getElementById('custPhone').value,
-        address: document.getElementById('custAddress').value
+        address: document.getElementById('custAddress').value,
+        paymentMethod: paymentMethod, // <--- NEW
+        transactionId: paymentMethod === 'bkash' ? trxId : null // <--- NEW
     };
+    // 1. Gather Data
+    // const customerData = {
+    //     name: document.getElementById('custName').value,
+    //     email: document.getElementById('custEmail').value,
+    //     phone: document.getElementById('custPhone').value,
+    //     address: document.getElementById('custAddress').value
+    // };
 
     const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
     const total = subtotal + SHIPPING_COST;
@@ -82,7 +94,7 @@ form.addEventListener('submit', async (e) => {
             document.getElementById('successOrderId').innerText = result.orderId;
             document.getElementById('successEmailDisplay').innerText = customerData.email;
             successModal.classList.add('active');
-            
+
             // Clear Cart
             localStorage.removeItem('SHOPPING_CART');
         } else {
@@ -102,4 +114,31 @@ form.addEventListener('submit', async (e) => {
 function clearCartAndRedirect() {
     // Cart is already cleared in submit handler
     // Just a helper for the button onclick
+}
+
+
+// Toggle Payment Method UI
+function selectPayment(method) {
+    // 1. Update Visual Selection
+    document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+
+    // Find the clicked input's parent label and add 'selected'
+    const selectedInput = document.querySelector(`input[value="${method}"]`);
+    if (selectedInput) {
+        selectedInput.closest('.payment-option').classList.add('selected');
+        selectedInput.checked = true;
+    }
+
+    // 2. Show/Hide bKash Details
+    const bkashDetails = document.getElementById('bkashDetails');
+    const trxInput = document.getElementById('bkashTrxId');
+
+    if (method === 'bkash') {
+        bkashDetails.classList.remove('hidden');
+        trxInput.setAttribute('required', 'true'); // Make TrxID mandatory
+    } else {
+        bkashDetails.classList.add('hidden');
+        trxInput.removeAttribute('required'); // Remove requirement
+        trxInput.value = ''; // Clear input
+    }
 }

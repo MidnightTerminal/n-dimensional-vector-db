@@ -1,5 +1,3 @@
- @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
-
  :root {
      --primary-color: #2563eb;
      --text-dark: #1f2937;
@@ -507,7 +505,6 @@
  .showcase-section {
      width: 90%;
      max-width: 1400px;
-     /* padding: 40px 0; */
      margin: 0 auto;
     }
     .showcase-section h1 {
@@ -521,14 +518,11 @@
         color: white;
     }
 
- /* --- Header: Title & View All --- */
  .product-section-header {
      display: flex;
      justify-content: space-between;
      align-items: flex-end;
      margin-bottom: 24px;
-     /* text-align: center; */
-     /* padding: 0 10px; */
  }
 
  .section-title h2 {
@@ -560,28 +554,21 @@
      color: var(--cta-hover);
  }
 
- /* --- Slider Container --- */
  .slider-container {
      position: relative;
      width: 100%;
  }
 
- /* Hide scrollbar but keep functionality */
  .slider-track-wrapper {
      overflow-x: auto;
      white-space: nowrap;
      scroll-behavior: smooth;
      padding: 10px 0px 30px 0px;
-     /* Bottom padding for shadow space */
-     -ms-overflow-style: none;
-     /* IE and Edge */
      scrollbar-width: none;
-     /* Firefox */
  }
 
  .slider-track-wrapper::-webkit-scrollbar {
      display: none;
-     /* Chrome, Safari, Opera */
  }
 
  .product-list {
@@ -589,10 +576,9 @@
      gap: 20px;
  }
 
- /* --- Product Card Styling --- */
+
  .product-card {
      flex: 0 0 260px;
-     /* Fixed width for cards */
      background: var(--card-bg);
      border: 1px solid var(--border-color);
      border-radius: 12px;
@@ -610,7 +596,6 @@
      border-color: transparent;
  }
 
- /* Card Image Area */
  .card-image-wrapper {
      position: relative;
      width: 100%;
@@ -630,7 +615,6 @@
      transform: scale(1.05);
  }
 
- /* Badges */
  .badge {
      position: absolute;
      top: 12px;
@@ -653,7 +637,6 @@
      color: white;
  }
 
- /* Wishlist Icon */
  .wishlist-btn {
      position: absolute;
      top: 12px;
@@ -690,7 +673,6 @@
      stroke: var(--accent-color);
  }
 
- /* Card Content */
  .card-content {
      padding: 16px;
      display: flex;
@@ -712,13 +694,11 @@
      color: var(--showcase-primary-color);
      margin-bottom: 8px;
      line-height: 1.4;
-     /* Truncate text */
      white-space: nowrap;
      overflow: hidden;
      text-overflow: ellipsis;
  }
 
- /* Rating */
  .rating {
      display: flex;
      align-items: center;
@@ -733,15 +713,12 @@
      font-size: 0.8rem;
  }
 
- /* Price & Action */
 .card-footer {
-    /* margin-top: auto; */
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    /* padding-top: 10px;  */
 }
 
  .price-group {
@@ -761,36 +738,31 @@
      color: #b0b0b0;
  }
 
-/* Updated Add to Cart Button */
 .add-cart-btn {
     background-color: var(--cta-color);
     color: white;
     border: none;
-    /* Remove fixed width/height */
     width: auto; 
     height: auto;
-    /* Add padding for button shape */
     padding: 10px 16px; 
-    border-radius: 8px; /* Rectangular with rounded corners */
+    border-radius: 8px; 
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px; /* Space between icon and text */
+    gap: 8px; 
     cursor: pointer;
     font-size: 0.85rem;
     font-weight: 600;
     transition: var(--transition);
 }
 
-/* Updated Hover State */
 .add-cart-btn:hover {
     background-color: var(--cta-hover);
-    /* Remove the rotation and replace with a subtle lift */
     transform: translateY(-2px); 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
- /* --- Navigation Arrows --- */
+
  .nav-btn {
      position: absolute;
      top: 50%;
@@ -807,11 +779,9 @@
      justify-content: center;
      z-index: 10;
      opacity: 0;
-     /* Hidden by default on mobile */
      transition: var(--transition);
  }
 
- /* Show arrows on hover of the container (Desktop) */
  @media (min-width: 1024px) {
      .slider-container:hover .nav-btn {
          opacity: 1;
@@ -844,7 +814,6 @@
      transition: var(--transition);
  }
 
- /* --- Toast Notification --- */
  .toast-container {
      position: fixed;
      bottom: 20px;
@@ -897,39 +866,9 @@
      }
  }
 
- /* --- Mobile Responsiveness --- */
- @media (max-width: 768px) {
-     .section-header {
-         flex-direction: column;
-         align-items: center;
-         gap: 10px;
-     }
-
-     .showcase-section h1{
-        font-size: 30px;
-     }
-
-     .section-header .section-title{
-        text-align: center;
-     }
-
-     .nav-btn {
-         display: none;
-         /* On mobile, rely on swipe */
-     }
-
-     .product-card {
-         flex: 0 0 220px;
-         /* Slightly smaller cards on mobile */
-     }
-
-     .card-image-wrapper {
-         height: 220px;
-     }
- }
 
 
- /* =============cart functionality============ */
+
  /* ================= Cart Sidebar Styles ================= */
 .cart-overlay {
     position: fixed;
@@ -952,7 +891,7 @@
 .cart-sidebar {
     position: fixed;
     top: 0;
-    right: -400px; /* Hidden by default */
+    right: -400px; 
     width: 350px;
     height: 100vh;
     background: #fff;
@@ -1002,7 +941,6 @@
     margin-top: 50px;
 }
 
-/* Individual Cart Item */
 .cart-item {
     display: flex;
     gap: 15px;
@@ -1066,7 +1004,6 @@
     font-size: 1.1rem;
 }
 
-/* Cart Footer */
 .cart-footer {
     padding: 20px;
     border-top: 1px solid #eee;
@@ -1103,11 +1040,7 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 480px) {
-    .cart-sidebar {
-        width: 100%;
-    }
-}
+
 
 /* ================= Product Modal Styles ================= */
 .product-modal-overlay {
@@ -1117,7 +1050,7 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.6);
-    z-index: 2000; /* Highest priority */
+    z-index: 2000; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1174,12 +1107,6 @@
     flex-direction: column;
 }
 
-@media (min-width: 768px) {
-    .modal-body {
-        flex-direction: row;
-        height: 500px; /* Fixed height for desktop */
-    }
-}
 
 .modal-image-container {
     flex: 1;

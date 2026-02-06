@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +8,22 @@
     <link rel="stylesheet" href="/checkout/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body class="checkout-page">
 
     <header class="checkout-header-nav">
         <div class="container">
-            <a href="/" class="back-link"><i class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
+            <a href="/" class="back-link"><i class="fa-solid fa-arrow-left" style="padding-right: 10px;"></i> Continue
+                Shopping</a>
             <div class="logo">
-                <img src="/public/assets/doller-logo2.png" alt="Logo" height="50">
+                <img src="/assets/doller-logo2.png" alt="Logo" height="50">
             </div>
         </div>
     </header>
 
     <div class="checkout-container">
         <h1>Secure Checkout</h1>
-        
+
         <div class="checkout-grid">
             <div class="checkout-form-section">
                 <h2>Shipping Details</h2>
@@ -43,17 +46,45 @@
 
                     <div class="form-group">
                         <label>Shipping Address</label>
-                        <textarea id="custAddress" required rows="3" placeholder="Street Address, City, Postal Code"></textarea>
+                        <textarea id="custAddress" required rows="3"
+                            placeholder="Street Address, City, Postal Code"></textarea>
                     </div>
 
                     <div class="payment-section">
                         <h2>Payment Method</h2>
-                        <div class="payment-option selected">
-                            <i class="fa-solid fa-money-bill-wave"></i>
-                            <span>Cash on Delivery</span>
-                            <i class="fa-solid fa-circle-check check-icon"></i>
+
+                        <div class="payment-options">
+                            <label class="payment-option selected" onclick="selectPayment('cod')">
+                                <input type="radio" name="payment_method" value="cod" checked>
+                                <div class="payment-content">
+                                    <i class="fa-solid fa-money-bill-wave"></i>
+                                    <span>Cash on Delivery</span>
+                                </div>
+                                <i class="fa-solid fa-circle-check check-icon"></i>
+                            </label>
+
+                            <label class="payment-option" onclick="selectPayment('bkash')">
+                                <input type="radio" name="payment_method" value="bkash">
+                                <div class="payment-content">
+                                    <img src="https://logos-download.com/wp-content/uploads/2022/01/BKash_Logo_icon.png"
+                                        alt="bKash" class="payment-logo">
+                                    <span>bKash Payment</span>
+                                </div>
+                                <i class="fa-solid fa-circle-check check-icon"></i>
+                            </label>
                         </div>
+
+                        <div id="bkashDetails" class="payment-details hidden">
+                            <p class="instruction">
+                                Please Send Money to <strong>017xxxxxxxx</strong> (Personal).<br>
+                                Then enter the Transaction ID below:
+                            </p>
+                            <div class="form-group">
+                                <label>Transaction ID (TrxID)</label>
+                                <input type="text" id="bkashTrxId" placeholder="e.g. 8N7A6D5...">
+                            </div>
                         </div>
+                    </div>
                 </form>
             </div>
 
@@ -61,8 +92,8 @@
                 <div class="summary-card">
                     <h3>Order Summary</h3>
                     <div class="summary-items" id="summaryItems">
-                        </div>
-                    
+                    </div>
+
                     <div class="summary-totals">
                         <div class="summary-row">
                             <span>Subtotal</span>
@@ -81,7 +112,7 @@
                     <button type="submit" form="checkoutForm" class="place-order-btn-large">
                         Confirm Order
                     </button>
-                    
+
                     <p class="secure-notice">
                         <i class="fa-solid fa-lock"></i> SSL Secured Payment
                     </p>
@@ -98,10 +129,12 @@
             <h3>Order Placed Successfully!</h3>
             <p>Order ID: <span id="successOrderId">#</span></p>
             <p>We sent a confirmation email to <span id="successEmailDisplay"></span></p>
-            <a href="/" class="continue-btn" onclick="clearCartAndRedirect()" style="text-decoration: none;">Return Home</a>
+            <a href="/" class="continue-btn" onclick="clearCartAndRedirect()" style="text-decoration: none;">Return
+                Home</a>
         </div>
     </div>
 
     <script src="/checkout/checkout.js"></script>
 </body>
+
 </html>
