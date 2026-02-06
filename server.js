@@ -2,14 +2,14 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-// 1. [FIX] Enable JSON parsing so server can read POST data
-app.use(express.json());
+// 1. Enable JSON parsing (REQUIRED for checkout form data)
+app.use(express.json()); 
 
-// 2. Serve 'public' folder at the root (for images, main style.css)
+// 2. Serve 'public' folder for the root path (Home page, images, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 3. [FIX] Serve 'checkout' folder specifically at /checkout path
-// This allows the browser to find /checkout/checkout.js and /checkout/style.css
+// 3. Serve 'checkout' folder specifically for the /checkout path
+// This fixes the CSS/JS loading issue
 app.use('/checkout', express.static(path.join(__dirname, 'checkout')));
 
 // Routes
@@ -26,7 +26,7 @@ app.get('/checkout', (req, res) => {
     res.sendFile(path.join(__dirname, 'checkout', 'checkout.html'));
 });
 
-// 4. [FIX] Create the API Endpoint to receive the order
+// 4. API to handle the Order
 app.post('/api/checkout', (req, res) => {
     const { customer, cart, total } = req.body;
 
@@ -36,7 +36,7 @@ app.post('/api/checkout', (req, res) => {
     console.log(`Total: ${total}`);
     console.log("==========================");
 
-    // Simulate database success
+    // Send success response
     res.json({ success: true, orderId: 'ORD-' + Date.now() });
 });
 
