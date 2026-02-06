@@ -727,6 +727,7 @@
     align-items: center;
     gap: 10px;
     /* padding-top: 10px;  */
+}
 
  .price-group {
      display: flex;
@@ -902,4 +903,4 @@
      .card-image-wrapper {
          height: 220px;
      }
- }}
+ }
