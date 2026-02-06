@@ -45,7 +45,7 @@ app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'checkout',
 
 app.post('/api/checkout', async (req, res) => {
     const { customer, cart, total } = req.body;
-    const orderRef = 'ORD-' + Date.now(); // Unique Order ID
+    const orderRef = 'ORD-' + Date.now(); 
     const connection = await pool.getConnection();
 
     try {
