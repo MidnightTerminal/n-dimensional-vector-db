@@ -1,0 +1,188 @@
+/* ================= CHECKOUT PAGE STYLES ================= */
+.checkout-page {
+    background-color: #f3f4f6;
+}
+
+.checkout-header-nav {
+    background: white;
+    padding: 15px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.checkout-header-nav .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.back-link {
+    color: var(--text-dark);
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    color: var(--primary-color);
+}
+
+.checkout-container {
+    max-width: 1200px;
+    margin: 0 auto 50px;
+    width: 90%;
+}
+
+.checkout-container h1 {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #1f2937;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 900px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+    .checkout-summary-section {
+        order: -1; /* Show summary first on mobile */
+    }
+}
+
+/* Sections */
+.checkout-form-section, .summary-card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.checkout-form-section h2, .summary-card h3 {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    font-size: 1.25rem;
+}
+
+/* Form Grid */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+}
+
+/* Payment Option */
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border: 2px solid var(--primary-color);
+    background: #eff6ff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.payment-option .check-icon {
+    margin-left: auto;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+/* Summary List */
+.summary-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 5px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.summary-item .item-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.summary-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.summary-item h4 {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.summary-item p {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Totals */
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.summary-row.total {
+    border-top: 2px solid #eee;
+    padding-top: 15px;
+    margin-top: 10px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #1f2937;
+}
+
+.place-order-btn-large {
+    width: 100%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.place-order-btn-large:hover {
+    background: #1d4ed8;
+}
+
+.secure-notice {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #10b981;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
