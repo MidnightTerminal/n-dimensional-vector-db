@@ -1,7 +1,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap');
 
  :root {
-     /* --primary-color: #2563eb; */
+     --primary-color: #2563eb;
      --text-dark: #1f2937;
      --bg-white: #ffffff;
      --bg-light: #f3f4f6;
@@ -12,7 +12,7 @@
      margin: 0;
      padding: 0;
      box-sizing: border-box;
-     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+     /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
  }
 
  body {
@@ -22,7 +22,7 @@
  }
 
  :root {
-     --primary-color: #1a1a1a;
+     --showcase-primary-color: #1a1a1a;
      --accent-color: #e63946;
      --cta-color: #333333;
      --cta-hover: #000000;
@@ -34,12 +34,6 @@
      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
      --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
      --transition: all 0.3s ease;
- }
-
- * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
  }
 
  a {
@@ -536,7 +530,7 @@
 
  .view-all-link {
      text-decoration: none;
-     color: var(--primary-color);
+     color: var(--showcase-primary-color);
      font-weight: 600;
      font-size: 0.9rem;
      border-bottom: 2px solid transparent;
@@ -547,7 +541,7 @@
  }
 
  .view-all-link:hover {
-     border-bottom-color: var(--primary-color);
+     border-bottom-color: var(--showcase-primary-color);
      color: var(--cta-hover);
  }
 
@@ -672,7 +666,7 @@
      width: 18px;
      height: 18px;
      fill: none;
-     stroke: var(--primary-color);
+     stroke: var(--showcase-primary-color);
      stroke-width: 2;
  }
 
@@ -700,7 +694,7 @@
  .product-title {
      font-size: 1rem;
      font-weight: 600;
-     color: var(--primary-color);
+     color: var(--showcase-primary-color);
      margin-bottom: 8px;
      line-height: 1.4;
      /* Truncate text */
@@ -725,12 +719,14 @@
  }
 
  /* Price & Action */
- .card-footer {
-     margin-top: auto;
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
- }
+.card-footer {
+    /* margin-top: auto; */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    /* padding-top: 10px;  */
 
  .price-group {
      display: flex;
@@ -740,7 +736,7 @@
  .current-price {
      font-weight: 700;
      font-size: 1.1rem;
-     color: var(--primary-color);
+     color: var(--showcase-primary-color);
  }
 
  .old-price {
@@ -749,24 +745,34 @@
      color: #b0b0b0;
  }
 
- .add-cart-btn {
-     background-color: var(--cta-color);
-     color: white;
-     border: none;
-     width: 36px;
-     height: 36px;
-     border-radius: 50%;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     cursor: pointer;
-     transition: var(--transition);
- }
+/* Updated Add to Cart Button */
+.add-cart-btn {
+    background-color: var(--cta-color);
+    color: white;
+    border: none;
+    /* Remove fixed width/height */
+    width: auto; 
+    height: auto;
+    /* Add padding for button shape */
+    padding: 10px 16px; 
+    border-radius: 8px; /* Rectangular with rounded corners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* Space between icon and text */
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
 
- .add-cart-btn:hover {
-     background-color: var(--cta-hover);
-     transform: rotate(90deg);
- }
+/* Updated Hover State */
+.add-cart-btn:hover {
+    background-color: var(--cta-hover);
+    /* Remove the rotation and replace with a subtle lift */
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
 
  /* --- Navigation Arrows --- */
  .nav-btn {
@@ -797,8 +803,8 @@
  }
 
  .nav-btn:hover {
-     background-color: var(--primary-color);
-     border-color: var(--primary-color);
+     background-color: var(--showcase-primary-color);
+     border-color: var(--showcase-primary-color);
  }
 
  .nav-btn:hover svg {
@@ -816,7 +822,7 @@
  .nav-btn svg {
      width: 20px;
      height: 20px;
-     stroke: var(--primary-color);
+     stroke: var(--showcase-primary-color);
      stroke-width: 2;
      fill: none;
      transition: var(--transition);
@@ -835,7 +841,7 @@
 
  .toast {
      background: #fff;
-     color: var(--primary-color);
+     color: var(--showcase-primary-color);
      padding: 16px 20px;
      border-radius: 8px;
      box-shadow: var(--shadow-md);
@@ -896,4 +902,4 @@
      .card-image-wrapper {
          height: 220px;
      }
- }
+ }}
