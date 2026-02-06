@@ -276,19 +276,13 @@ function updateCart() {
 
 document.addEventListener('DOMContentLoaded', () => {
     updateCart();
-    // ... any other initializers
 });
 
-// Attach this to your existing checkout button in the sidebar
-// Inside your existing sidebar logic
 document.querySelector('.checkout-btn').addEventListener('click', () => {
-    // Check if cart is empty
     if (cart.length === 0) {
         showToast("Your cart is empty!", "cart");
         return;
     }
-    
-    // REDIRECT to the new page
     window.location.href = '/checkout'; 
 });
 
