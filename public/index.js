@@ -75,6 +75,8 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoPlay();
 });
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const observerOptions = {
@@ -93,16 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Select elements
-    const header = document.querySelector('.section-header');
+    const header = document.querySelectorAll('.section-header');
     const cards = document.querySelectorAll('.feature-card');
 
     // Observe
-    if (header) observer.observe(header);
+    header.forEach(header => observer.observe(header));
     cards.forEach(card => observer.observe(card));
 });
 
 
-const sliderWrapper = document.getElementById('sliderWrapper');
+const sliderWrapper = document.getElementById('productSliderWrapper');
 const scrollLeftBtn = document.getElementById('scrollLeft');
 const scrollRightBtn = document.getElementById('scrollRight');
 
