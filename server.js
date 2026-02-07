@@ -11,7 +11,7 @@ app.use(express.json());
 // app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/checkout_assets', express.static(path.join(__dirname, 'public', 'checkout_assets')));
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout.html')));
