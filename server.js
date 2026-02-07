@@ -94,6 +94,7 @@ app.post('/api/checkout', async (req, res) => {
 
         await connection.commit();
         console.log(`✅ Order ${orderRef} saved to MySQL.`);
+        res.json({ success: true, orderId: orderRef });
 
         // C. Send Email to Customer (Professional HTML Template)
         const mailOptions = {
