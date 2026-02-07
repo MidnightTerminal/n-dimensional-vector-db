@@ -1,16 +1,17 @@
-# This file is for cPanel/Litespeed environments to handle routing
+# Litespeed / Apache Clean URL Routing
 RewriteEngine On
 RewriteBase /
 
-# If the request is for an actual file or directory, serve it directly
-RewriteCond %{REQUEST_FILENAME} -f [OR]
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
+# 1. Force /checkout to serve checkout.html internally
+# This fixes the "Cannot GET /checkout" error by mapping it to the file
+RewriteRule ^checkout$ checkout.html [L]
 
-# For all other requests, let the Node.js application handle it
-# In some cPanel setups, you might need to point to your entry point file
-# But typically, for Express, we want to ensure the URL remains /checkout
-# and is passed to the Node process.
-# If the above doesn't work, we use a fallback to index.html for SPAs:
-RewriteRule ^checkout$ /checkout.html [L]
+# 2. Optional: Remove .html from URLs if someone types them
+# This redirects /checkout.html to /checkout for consistency
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# 3. Handle other routes or SPA fallback
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
