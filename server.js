@@ -8,11 +8,14 @@ const twilio = require('twilio');
 const app = express();
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use('/checkout_assets', express.static(path.join(__dirname, 'public', 'checkout_assets')));
+// app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/checkout_assets', express.static(path.join(__dirname, 'public', 'checkout_assets')));
 
-// 1. Create MySQL Connection Pool
-// Ensure your .env file has these variables set correctly
+app.use(express.static('public'));
+
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout.html')));
+
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -23,7 +26,6 @@ const pool = mysql.createPool({
     queueLimit: 0
 });
 
-// 2. Configure Email Transporter
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -32,7 +34,6 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// 3. Configure Twilio Client (Optional)
 let twilioClient;
 if (process.env.TWILIO_SID && process.env.TWILIO_AUTH_TOKEN) {
     try {
@@ -42,12 +43,8 @@ if (process.env.TWILIO_SID && process.env.TWILIO_AUTH_TOKEN) {
     }
 }
 
-// --- Routes ---
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout.html')));
 
 app.post('/api/checkout', async (req, res) => {
-    // 1. Validate Request Body
     const { customer, cart, total } = req.body;
     if (!customer || !cart || !total) {
         return res.status(400).json({ success: false, message: 'Missing order data' });
@@ -61,7 +58,6 @@ app.post('/api/checkout', async (req, res) => {
         await connection.beginTransaction();
 
         // 2. Prepare Data
-        // Ensure transactionId is NULL if not provided or empty
         const trxId = (customer.transactionId && customer.transactionId.trim() !== '')
             ? customer.transactionId
             : null;
@@ -84,7 +80,6 @@ app.post('/api/checkout', async (req, res) => {
         );
 
         // B. Insert into 'order_items' table
-        // Loop through the cart and insert each item
         for (const item of cart) {
             await connection.execute(
                 `INSERT INTO order_items (order_ref, product_title, quantity, price) VALUES (?, ?, ?, ?)`,
@@ -222,7 +217,7 @@ app.post('/api/checkout', async (req, res) => {
 
     } catch (error) {
         if (connection) await connection.rollback();
-        console.error('❌ Checkout Error:', error); // Check your terminal for this error message!
+        console.error('❌ Checkout Error:', error); 
         res.status(500).json({ success: false, message: 'Internal Server Error: ' + error.message });
     } finally {
         if (connection) connection.release();

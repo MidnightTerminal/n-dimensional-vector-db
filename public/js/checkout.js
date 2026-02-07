@@ -43,7 +43,6 @@ function loadCheckoutCart() {
     totalEl.innerText = '৳' + (subtotal + SHIPPING_COST).toFixed(2);
 }
 
-// Handle Form Submission
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -55,7 +54,6 @@ form.addEventListener('submit', async (e) => {
     const paymentMethod = document.querySelector('input[name="payment_method"]:checked').value;
     const trxId = document.getElementById('bkashTrxId').value;
 
-    // 2. Include it in the data object
     const customerData = {
         name: document.getElementById('custName').value,
         email: document.getElementById('custEmail').value,
@@ -93,7 +91,6 @@ form.addEventListener('submit', async (e) => {
             document.getElementById('successEmailDisplay').innerText = customerData.email;
             successModal.classList.add('active');
 
-            // Clear Cart
             localStorage.removeItem('SHOPPING_CART');
         } else {
             alert('Order failed: ' + result.message);
