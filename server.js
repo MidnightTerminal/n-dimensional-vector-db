@@ -231,9 +231,11 @@ app.post('/api/checkout', async (req, res) => {
 
 // Catch-all route for any other request to serve index.html (useful for SPAs)
 // Note: In Express 5, wildcards must be named, e.g., '/*' or '/:any*'
-// app.get('/*', (req, res) => {
+// Fix for Express 5: Wildcards must be named using the :any* syntax
+// app.get('/:any*', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 // });
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
