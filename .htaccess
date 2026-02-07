@@ -1,17 +1,15 @@
-# Litespeed / Apache Clean URL Routing
+# This file should be in your PROJECT ROOT (where server.js is)
 RewriteEngine On
-RewriteBase /
 
-# 1. Force /checkout to serve checkout.html internally
-# This fixes the "Cannot GET /checkout" error by mapping it to the file
-RewriteRule ^checkout$ checkout.html [L]
+# 1. If the request is for /checkout, manually point it to the public file
+# This bypasses the Node.js selector for this specific route if it's failing
+RewriteRule ^checkout$ public/checkout.html [L]
 
-# 2. Optional: Remove .html from URLs if someone types them
-# This redirects /checkout.html to /checkout for consistency
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
-RewriteRule ^ %1 [R=301,L]
-
-# 3. Handle other routes or SPA fallback
+# 2. Pass everything else to the Node.js application
+# The following lines are usually added by cPanel's Node.js selector
+# but we ensure they don't block our custom rule above.
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
+RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]
+
+

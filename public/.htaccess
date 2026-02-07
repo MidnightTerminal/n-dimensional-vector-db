@@ -1,17 +1,10 @@
-# Litespeed / Apache Clean URL Routing
+# This file should be in your PUBLIC folder
 RewriteEngine On
 RewriteBase /
 
-# 1. Force /checkout to serve checkout.html internally
-# This fixes the "Cannot GET /checkout" error by mapping it to the file
+# Force /checkout to serve checkout.html internally
 RewriteRule ^checkout$ checkout.html [L]
 
-# 2. Optional: Remove .html from URLs if someone types them
-# This redirects /checkout.html to /checkout for consistency
+# Redirect /checkout.html to /checkout for clean URLs
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s([^.]+)\.html [NC]
 RewriteRule ^ %1 [R=301,L]
-
-# 3. Handle other routes or SPA fallback
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /index.html [L]
