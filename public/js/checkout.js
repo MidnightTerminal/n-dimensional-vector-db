@@ -13,7 +13,7 @@ function loadCheckoutCart() {
     const totalEl = document.getElementById('summaryTotal');
 
     if (cart.length === 0) {
-        window.location.href = '/'; 
+        window.location.href = '/';
         return;
     }
 
@@ -60,7 +60,7 @@ form.addEventListener('submit', async (e) => {
         phone: document.getElementById('custPhone').value,
         address: document.getElementById('custAddress').value,
         paymentMethod: paymentMethod,
-        transactionId: paymentMethod === 'bkash' ? trxId : null 
+        transactionId: paymentMethod === 'bkash' ? trxId : null
     };
     // 1. Gather Data
     // const customerData = {
@@ -84,6 +84,14 @@ form.addEventListener('submit', async (e) => {
             })
         });
 
+
+        // Check if response is okay, if not, throw an error with the status text
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Server Error ${response.status}: ${errorText}`);
+        }
+
+
         const result = await response.json();
 
         if (result.success) {
@@ -100,7 +108,7 @@ form.addEventListener('submit', async (e) => {
 
     } catch (error) {
         console.error(error);
-        alert('Network error. Please try again.');
+        alert('Error: ' + error.message);
         submitBtn.disabled = false;
         submitBtn.innerText = originalText;
     }
@@ -121,16 +129,16 @@ function selectPayment(method) {
 
     const bkashDetails = document.getElementById('bkashDetails');
     const trxInput = document.getElementById('bkashTrxId');
-    const confirm=document.getElementById('confirm-order')
+    const confirm = document.getElementById('confirm-order')
 
     if (method === 'bkash') {
         bkashDetails.classList.remove('hidden');
-        trxInput.setAttribute('required', 'true'); 
-        confirm.style.display='none';
+        trxInput.setAttribute('required', 'true');
+        confirm.style.display = 'none';
     } else {
         bkashDetails.classList.add('hidden');
-        trxInput.removeAttribute('required'); 
-        trxInput.value = ''; 
-        confirm.style.display='block';
+        trxInput.removeAttribute('required');
+        trxInput.value = '';
+        confirm.style.display = 'block';
     }
 }
