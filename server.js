@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
-const mysql = require('mysql2/promise'); // Using promise wrapper for cleaner async/await
+const mysql = require('mysql2/promise');
 const nodemailer = require('nodemailer');
 const twilio = require('twilio');
 
@@ -12,6 +12,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/checkout', express.static(path.join(__dirname, 'checkout')));
 
 // 1. Create MySQL Connection Pool
+// Ensure your .env file has these variables set correctly
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -31,12 +32,14 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// 3. Configure Twilio Client
+// 3. Configure Twilio Client (Optional)
 let twilioClient;
-try {
-    twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
-} catch (err) {
-    console.warn("Twilio not configured properly:", err.message);
+if (process.env.TWILIO_SID && process.env.TWILIO_AUTH_TOKEN) {
+    try {
+        twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
+    } catch (err) {
+        console.warn("Twilio not configured properly:", err.message);
+    }
 }
 
 // --- Routes ---
@@ -44,12 +47,24 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.ht
 app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'checkout', 'checkout.html')));
 
 app.post('/api/checkout', async (req, res) => {
+    // 1. Validate Request Body
     const { customer, cart, total } = req.body;
+    if (!customer || !cart || !total) {
+        return res.status(400).json({ success: false, message: 'Missing order data' });
+    }
+
     const orderRef = 'ORD-' + Date.now(); 
-    const connection = await pool.getConnection();
+    let connection;
 
     try {
+        connection = await pool.getConnection();
         await connection.beginTransaction();
+
+        // 2. Prepare Data
+        // Ensure transactionId is NULL if not provided or empty
+        const trxId = (customer.transactionId && customer.transactionId.trim() !== '') 
+                      ? customer.transactionId 
+                      : null;
 
         // A. Insert into 'orders' table
         const [result] = await connection.execute(
@@ -63,13 +78,13 @@ app.post('/api/checkout', async (req, res) => {
                 customer.phone,
                 customer.address,
                 customer.paymentMethod,
-                customer.transactionId || null, // Handle null if not bKash
+                trxId, 
                 total
             ]
         );
 
         // B. Insert into 'order_items' table
-        // We loop through the cart and insert each item
+        // Loop through the cart and insert each item
         for (const item of cart) {
             await connection.execute(
                 `INSERT INTO order_items (order_ref, product_title, quantity, price) VALUES (?, ?, ?, ?)`,
@@ -80,7 +95,7 @@ app.post('/api/checkout', async (req, res) => {
         await connection.commit();
         console.log(`✅ Order ${orderRef} saved to MySQL.`);
 
-        // C. Send Email to Customer
+        // C. Send Email to Customer (Async - don't wait)
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: customer.email,
@@ -97,33 +112,32 @@ app.post('/api/checkout', async (req, res) => {
                 <p>We will contact you shortly at ${customer.phone}.</p>
             `
         };
+        transporter.sendMail(mailOptions).catch(err => console.error("Email Error:", err));
 
-        transporter.sendMail(mailOptions).catch(console.error);
-
-        // D. Send WhatsApp to Admin (You)
-        if (twilioClient) {
+        // D. Send WhatsApp to Admin (Async - don't wait)
+        if (twilioClient && process.env.TWILIO_WHATSAPP_NUMBER && process.env.ADMIN_PHONE_NUMBER) {
             const whatsappMsg = `🔔 *New Order Received!*\n\n` +
                 `Ref: ${orderRef}\n` +
                 `Customer: ${customer.name}\n` +
                 `Phone: ${customer.phone}\n` +
                 `Total: ৳${total}\n` +
-                `Payment: ${customer.paymentMethod} ${customer.transactionId ? `(TrxID: ${customer.transactionId})` : ''}`;
+                `Payment: ${customer.paymentMethod} ${trxId ? `(TrxID: ${trxId})` : ''}`;
 
             twilioClient.messages.create({
                 body: whatsappMsg,
                 from: process.env.TWILIO_WHATSAPP_NUMBER,
                 to: process.env.ADMIN_PHONE_NUMBER
-            }).then(msg => console.log('WhatsApp sent:', msg.sid)).catch(console.error);
+            }).then(msg => console.log('WhatsApp sent:', msg.sid)).catch(err => console.error("Twilio Error:", err));
         }
 
         res.json({ success: true, orderId: orderRef });
 
     } catch (error) {
-        await connection.rollback(); // Undo database changes if error occurs
-        console.error('Checkout Error:', error);
-        res.status(500).json({ success: false, message: 'Internal Server Error' });
+        if (connection) await connection.rollback(); 
+        console.error('❌ Checkout Error:', error); // Check your terminal for this error message!
+        res.status(500).json({ success: false, message: 'Internal Server Error: ' + error.message });
     } finally {
-        connection.release();
+        if (connection) connection.release();
     }
 });
 
