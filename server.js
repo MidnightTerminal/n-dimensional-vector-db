@@ -44,7 +44,7 @@ if (process.env.TWILIO_SID && process.env.TWILIO_AUTH_TOKEN) {
 
 // --- Routes ---
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout_assets', 'checkout.html')));
+app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout.html')));
 
 app.post('/api/checkout', async (req, res) => {
     // 1. Validate Request Body
@@ -229,6 +229,10 @@ app.post('/api/checkout', async (req, res) => {
     }
 });
 
+
+// app.get('/*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
