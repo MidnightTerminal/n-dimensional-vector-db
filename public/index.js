@@ -283,7 +283,7 @@ document.querySelector('.checkout-btn').addEventListener('click', () => {
         showToast("Your cart is empty!", "cart");
         return;
     }
-    window.location.href = '/checkout'; 
+    window.location.href = 'checkout'; 
 });
 
 
