@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/checkout', express.static(path.join(__dirname, 'public', 'checkout')));
+app.use('/checkout_assets', express.static(path.join(__dirname, 'public', 'checkout_assets')));
 
 // 1. Create MySQL Connection Pool
 // Ensure your .env file has these variables set correctly
@@ -44,7 +44,7 @@ if (process.env.TWILIO_SID && process.env.TWILIO_AUTH_TOKEN) {
 
 // --- Routes ---
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout', 'checkout.html')));
+app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout_assets', 'checkout.html')));
 
 app.post('/api/checkout', async (req, res) => {
     // 1. Validate Request Body
