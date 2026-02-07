@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/checkout', express.static(path.join(__dirname, 'checkout')));
+app.use('/checkout', express.static(path.join(__dirname, 'public', 'checkout')));
 
 // 1. Create MySQL Connection Pool
 // Ensure your .env file has these variables set correctly
@@ -44,7 +44,7 @@ if (process.env.TWILIO_SID && process.env.TWILIO_AUTH_TOKEN) {
 
 // --- Routes ---
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
-app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'checkout', 'checkout.html')));
+app.get('/checkout', (req, res) => res.sendFile(path.join(__dirname, 'public', 'checkout', 'checkout.html')));
 
 app.post('/api/checkout', async (req, res) => {
     // 1. Validate Request Body
@@ -53,7 +53,7 @@ app.post('/api/checkout', async (req, res) => {
         return res.status(400).json({ success: false, message: 'Missing order data' });
     }
 
-    const orderRef = 'ORD-' + Date.now(); 
+    const orderRef = 'ORD-' + Date.now();
     let connection;
 
     try {
@@ -62,9 +62,9 @@ app.post('/api/checkout', async (req, res) => {
 
         // 2. Prepare Data
         // Ensure transactionId is NULL if not provided or empty
-        const trxId = (customer.transactionId && customer.transactionId.trim() !== '') 
-                      ? customer.transactionId 
-                      : null;
+        const trxId = (customer.transactionId && customer.transactionId.trim() !== '')
+            ? customer.transactionId
+            : null;
 
         // A. Insert into 'orders' table
         const [result] = await connection.execute(
@@ -78,7 +78,7 @@ app.post('/api/checkout', async (req, res) => {
                 customer.phone,
                 customer.address,
                 customer.paymentMethod,
-                trxId, 
+                trxId,
                 total
             ]
         );
@@ -95,45 +95,132 @@ app.post('/api/checkout', async (req, res) => {
         await connection.commit();
         console.log(`✅ Order ${orderRef} saved to MySQL.`);
 
-        // C. Send Email to Customer (Async - don't wait)
+        // C. Send Email to Customer (Professional HTML Template)
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: customer.email,
             subject: `Order Confirmation - ${orderRef}`,
             html: `
-                <h2>Hello ${customer.name},</h2>
-                <p>Thank you for shopping with Horizontal Shop!</p>
-                <p><strong>Order ID:</strong> ${orderRef}</p>
-                <p><strong>Total Amount:</strong> ৳${total}</p>
-                <h3>Items:</h3>
-                <ul>
-                    ${cart.map(item => `<li>${item.title} (x${item.quantity}) - ৳${item.price}</li>`).join('')}
-                </ul>
-                <p>We will contact you shortly at ${customer.phone}.</p>
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;">
+                    <div style="background-color: #4CAF50; padding: 20px; text-align: center; color: white;">
+                        <h1 style="margin: 0;">Order Confirmed!</h1>
+                        <p style="margin: 5px 0 0;">Thank you for shopping with Horizontal Shop</p>
+                    </div>
+                    
+                    <div style="padding: 20px;">
+                        <h3 style="color: #333;">Hi ${customer.name},</h3>
+                        <p style="color: #666;">We have received your order and are getting it ready!</p>
+                        
+                        <div style="background-color: #f9f9f9; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                            <p style="margin: 5px 0;"><strong>Order ID:</strong> ${orderRef}</p>
+                            <p style="margin: 5px 0;"><strong>Payment Method:</strong> ${customer.paymentMethod.toUpperCase()}</p>
+                            <p style="margin: 5px 0;"><strong>Shipping Address:</strong> ${customer.address}</p>
+                            <p style="margin: 5px 0;"><strong>Phone:</strong> ${customer.phone}</p>
+                        </div>
+
+                        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                            <thead>
+                                <tr style="background-color: #eeeeee;">
+                                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd;">Product</th>
+                                    <th style="padding: 10px; text-align: center; border-bottom: 2px solid #ddd;">Qty</th>
+                                    <th style="padding: 10px; text-align: right; border-bottom: 2px solid #ddd;">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${cart.map(item => `
+                                    <tr>
+                                        <td style="padding: 10px; border-bottom: 1px solid #eee;">
+                                            <strong>${item.title}</strong>
+                                        </td>
+                                        <td style="padding: 10px; text-align: center; border-bottom: 1px solid #eee;">${item.quantity}</td>
+                                        <td style="padding: 10px; text-align: right; border-bottom: 1px solid #eee;">৳${item.price}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+
+                        <div style="text-align: right; margin-top: 20px;">
+                            <p style="font-size: 18px; margin: 5px 0;"><strong>Total Amount:</strong> <span style="color: #4CAF50;">৳${total}</span></p>
+                        </div>
+                        
+                        <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;">
+                        
+                        <p style="font-size: 12px; color: #999; text-align: center;">
+                            If you have any questions, contact us at ${process.env.EMAIL_USER} or call us.
+                        </p>
+                    </div>
+                </div>
             `
         };
         transporter.sendMail(mailOptions).catch(err => console.error("Email Error:", err));
 
-        // D. Send WhatsApp to Admin (Async - don't wait)
-        if (twilioClient && process.env.TWILIO_WHATSAPP_NUMBER && process.env.ADMIN_PHONE_NUMBER) {
-            const whatsappMsg = `🔔 *New Order Received!*\n\n` +
-                `Ref: ${orderRef}\n` +
-                `Customer: ${customer.name}\n` +
-                `Phone: ${customer.phone}\n` +
-                `Total: ৳${total}\n` +
-                `Payment: ${customer.paymentMethod} ${trxId ? `(TrxID: ${trxId})` : ''}`;
+        // // D. Send WhatsApp to Admin (Async - don't wait)
+        // if (twilioClient && process.env.TWILIO_WHATSAPP_NUMBER && process.env.ADMIN_PHONE_NUMBER) {
+        //     const whatsappMsg = `🔔 *New Order Received!*\n\n` +
+        //         `Ref: ${orderRef}\n` +
+        //         `Customer: ${customer.name}\n` +
+        //         `Phone: ${customer.phone}\n` +
+        //         `Total: ৳${total}\n` +
+        //         `Payment: ${customer.paymentMethod} ${trxId ? `(TrxID: ${trxId})` : ''}`;
 
-            twilioClient.messages.create({
-                body: whatsappMsg,
-                from: process.env.TWILIO_WHATSAPP_NUMBER,
-                to: process.env.ADMIN_PHONE_NUMBER
-            }).then(msg => console.log('WhatsApp sent:', msg.sid)).catch(err => console.error("Twilio Error:", err));
-        }
+        //     twilioClient.messages.create({
+        //         body: whatsappMsg,
+        //         from: process.env.TWILIO_WHATSAPP_NUMBER,
+        //         to: process.env.ADMIN_PHONE_NUMBER
+        //     }).then(msg => console.log('WhatsApp sent:', msg.sid)).catch(err => console.error("Twilio Error:", err));
+        // }
 
-        res.json({ success: true, orderId: orderRef });
+
+        // D. Send Email to Admin (Detailed HTML Version)
+        const adminMailOptions = {
+            from: process.env.EMAIL_USER,
+            to: process.env.EMAIL_USER, // Sends to YOU
+            subject: `🔔 New Order: ${orderRef} - ৳${total}`,
+            html: `
+                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #333;">
+                    <div style="background-color: #333; padding: 15px; text-align: center; color: white;">
+                        <h2 style="margin: 0;">🔔 New Order Received!</h2>
+                    </div>
+                    
+                    <div style="padding: 20px;">
+                        <h3 style="color: #333;">Customer Details:</h3>
+                        <p><strong>Name:</strong> ${customer.name}</p>
+                        <p><strong>Phone:</strong> <a href="tel:${customer.phone}">${customer.phone}</a></p>
+                        <p><strong>Email:</strong> ${customer.email}</p>
+                        <p><strong>Address:</strong> ${customer.address}</p>
+                        <p><strong>Payment:</strong> ${customer.paymentMethod} ${trxId ? `(TrxID: ${trxId})` : ''}</p>
+
+                        <h3 style="color: #333; border-bottom: 1px solid #ccc; padding-bottom: 5px;">Order Items:</h3>
+                        <table style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background-color: #f2f2f2;">
+                                    <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Product</th>
+                                    <th style="padding: 8px; text-align: center; border: 1px solid #ddd;">Qty</th>
+                                    <th style="padding: 8px; text-align: right; border: 1px solid #ddd;">Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${cart.map(item => `
+                                    <tr>
+                                        <td style="padding: 8px; border: 1px solid #ddd;">${item.title}</td>
+                                        <td style="padding: 8px; text-align: center; border: 1px solid #ddd;">${item.quantity}</td>
+                                        <td style="padding: 8px; text-align: right; border: 1px solid #ddd;">৳${item.price}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+
+                        <div style="text-align: right; margin-top: 15px;">
+                            <h3>Total: ৳${total}</h3>
+                        </div>
+                    </div>
+                </div>
+            `
+        };
+        transporter.sendMail(adminMailOptions).catch(err => console.error("Admin Email Error:", err));
 
     } catch (error) {
-        if (connection) await connection.rollback(); 
+        if (connection) await connection.rollback();
         console.error('❌ Checkout Error:', error); // Check your terminal for this error message!
         res.status(500).json({ success: false, message: 'Internal Server Error: ' + error.message });
     } finally {
