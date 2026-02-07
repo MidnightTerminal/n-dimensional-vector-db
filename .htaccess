@@ -1,6 +1,16 @@
+# This file is for cPanel/Litespeed environments to handle routing
 RewriteEngine On
 RewriteBase /
-RewriteRule ^index\.html$ - [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+
+# If the request is for an actual file or directory, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# For all other requests, let the Node.js application handle it
+# In some cPanel setups, you might need to point to your entry point file
+# But typically, for Express, we want to ensure the URL remains /checkout
+# and is passed to the Node process.
+# If the above doesn't work, we use a fallback to index.html for SPAs:
+RewriteRule ^checkout$ /checkout.html [L]
 RewriteRule . /index.html [L]
