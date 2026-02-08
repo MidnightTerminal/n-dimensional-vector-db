@@ -6,18 +6,20 @@ const nodemailer = require('nodemailer');
 const twilio = require('twilio');
 
 const app = express();
-
 app.use(express.json());
 
-
-
-app.get('/checkout', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'checkout.html'));
-});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+
+app.get('/checkout', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'checkout.html'));
+});
+app.get('/shop', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'shop.html'));
+});
+
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -31,8 +33,8 @@ const pool = mysql.createPool({
 
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
-    port: 465,                  
-    secure: true,                
+    port: 465,
+    secure: true,
     auth: {
         user: process.env.EMAIL_USER, // Your cPanel email
         pass: process.env.EMAIL_PASS  // Your cPanel email password
@@ -222,20 +224,13 @@ app.post('/api/checkout', async (req, res) => {
 
     } catch (error) {
         if (connection) await connection.rollback();
-        console.error('❌ Checkout Error:', error); 
+        console.error('❌ Checkout Error:', error);
         res.status(500).json({ success: false, message: 'Internal Server Error: ' + error.message });
     } finally {
         if (connection) connection.release();
     }
 });
 
-
-// Catch-all route for any other request to serve index.html (useful for SPAs)
-// Note: In Express 5, wildcards must be named, e.g., '/*' or '/:any*'
-// Fix for Express 5: Wildcards must be named using the :any* syntax
-// app.get('/:any*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'public', 'index.html'));
-// });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
