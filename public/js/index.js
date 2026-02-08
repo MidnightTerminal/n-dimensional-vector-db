@@ -100,31 +100,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ====================== Product Slider Start ===============================
 
-const sliderWrapper = document.getElementById('productSliderWrapper');
-const scrollLeftBtn = document.getElementById('scrollLeft');
-const scrollRightBtn = document.getElementById('scrollRight');
+const allSliders = document.querySelectorAll('.slider-container');
 
+allSliders.forEach(container => {
+    const sliderWrapper = container.querySelector('.slider-track-wrapper');
+    const prevBtn = container.querySelector('.nav-btn.prev');
+    const nextBtn = container.querySelector('.nav-btn.next'); 
+    
+    const scrollAmount = 280;
 
-const scrollAmount = 280;
+    if (sliderWrapper && nextBtn && prevBtn) {
+        
+        nextBtn.addEventListener('click', () => {
+            sliderWrapper.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        });
 
-scrollLeftBtn.addEventListener('click', () => {
-    sliderWrapper.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
-    });
-});
-
-scrollRightBtn.addEventListener('click', () => {
-    sliderWrapper.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-    });
+        prevBtn.addEventListener('click', () => {
+            sliderWrapper.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
 
 
 function toggleWishlist(btn) {
     btn.classList.toggle('active');
-    // Optional: Provide feedback
     if (btn.classList.contains('active')) {
         showToast('Added to Wishlist', 'heart');
     } else {

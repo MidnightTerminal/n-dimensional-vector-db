@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Shop - Product Showcase</title>
+    <link rel="stylesheet" href="/css/shop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="navbar">
+            <a href="/" class="navbar-logo"><img src="assets/doller-logo2.png" width="80px" height="60px" alt=""
+                    srcset=""></a>
+
+            <ul class="nav-links" id="nav-links">
+                <i class="fa-solid fa-xmark" id="close-menu-btn"></i>
+
+                <li class="nav-item hover-underline active"><a href="/">Home</a></li>
+                <li class="nav-item hover-underline"><a href="">About</a></li>
+
+                <li class="nav-item dropdown hover-underline" id="shop-dropdown">
+                    <a href="/shop.html">Shop</a>
+                    <!-- <ul class="dropdown-menu">
+                        <li><a href="#" class="dropdown-item">Electronics</a></li>
+                        <li><a href="#" class="dropdown-item">Clothing</a></li>
+                    </ul> -->
+                </li>
+                <li class="nav-item hover-underline">Contact</li>
+                <li class="nav-item hover-underline"><i class="far fa-user profile-icon"></i>My Profile</li>
+            </ul>
+
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <i class="fa fa-search search-icon"></i>
+                </div>
+
+                <div class="menu-toggle" id="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+
+                <div class="cart-icon-wrapper">
+                    <i class="fa-solid fa-cart-shopping cart-icon"></i>
+                    <span class="cart-badge">3</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- MAIN SHOP CONTENT -->
+    <main class="container">
+
+        <!-- Shop Header & Filters -->
+        <section class="shop-header">
+            <h1 class="shop-title">Our Collection</h1>
+            <p class="shop-subtitle">Explore the best items curated just for you.</p>
+
+            <div class="filter-container" id="filterContainer">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ladies-bag">Ladies Bag</button>
+                <button class="filter-btn" data-filter="ladies-items">Ladies Items</button>
+                <button class="filter-btn" data-filter="sneakers">Sneakers</button>
+                <button class="filter-btn" data-filter="baby-items">Baby Items</button>
+                <button class="filter-btn" data-filter="gadgets">Gadgets</button>
+                <button class="filter-btn" data-filter="accessories">Accessories</button>
+            </div>
+        </section>
+
+        <!-- Product Grid -->
+        <section class="products-grid" id="productsGrid">
+
+            <!-- Product 1: Sneakers -->
+            <article class="product-card" data-category="sneakers">
+                <div class="card-image-wrapper" onclick="openProductModal(this)">
+                    <span class="badge badge-sale">Hot</span>
+                    <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
+                    <img src="https://picsum.photos/seed/shoe1/400/400" alt="Urban Runner Sneakers" class="card-image">
+                </div>
+                <div class="card-content">
+                    <span class="product-category">Sneakers</span>
+                    <h3 class="product-title">Urban Runner Pro</h3>
+                    <div class="rating">★★★★★ <span>(120)</span></div>
+                    <div class="card-footer">
+                        <div class="price-group">
+                            <span class="current-price">৳3499</span>
+                        </div>
+                        <button class="add-cart-btn" onclick="addToCart(this)" aria-label="Add to Cart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 2: Ladies Bag -->
+            <article class="product-card" data-category="ladies-bag">
+                <div class="card-image-wrapper" onclick="openProductModal(this)">
+                    <span class="badge badge-new">New</span>
+                    <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
+                    <img src="https://picsum.photos/seed/bag1/400/400" alt="Leather Tote Bag" class="card-image">
+                </div>
+                <div class="card-content">
+                    <span class="product-category">Ladies Bag</span>
+                    <h3 class="product-title">Classic Leather Tote</h3>
+                    <div class="rating">★★★★☆ <span>(45)</span></div>
+                    <div class="card-footer">
+                        <div class="price-group">
+                            <span class="current-price">৳4500</span>
+                            <span class="old-price">৳5200</span>
+                        </div>
+                        <button class="add-cart-btn" onclick="addToCart(this)" aria-label="Add to Cart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 3: Ladies Items (Dress) -->
+            <article class="product-card" data-category="ladies-items">
+                <div class="card-image-wrapper" onclick="openProductModal(this)">
+                    <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
+                    <img src="https://picsum.photos/seed/dress1/400/400" alt="Summer Floral Dress" class="card-image">
+                </div>
+                <div class="card-content">
+                    <span class="product-category">Ladies Items</span>
+                    <h3 class="product-title">Summer Floral Dress</h3>
+                    <div class="rating">★★★★★ <span>(88)</span></div>
+                    <div class="card-footer">
+                        <div class="price-group">
+                            <span class="current-price">৳1899</span>
+                        </div>
+                        <button class="add-cart-btn" onclick="addToCart(this)" aria-label="Add to Cart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 4: Gadgets -->
+            <article class="product-card" data-category="gadgets">
+                <div class="card-image-wrapper" onclick="openProductModal(this)">
+                    <span class="badge badge-sale">-20%</span>
+                    <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
+                    <img src="https://picsum.photos/seed/tech1/400/400" alt="Wireless Earbuds" class="card-image">
+                </div>
+                <div class="card-content">
+                    <span class="product-category">Gadgets</span>
+                    <h3 class="product-title">Noise Cancelling Earbuds</h3>
+                    <div class="rating">★★★★☆ <span>(210)</span></div>
+                    <div class="card-footer">
+                        <div class="price-group">
+                            <span class="current-price">৳2999</span>
+                            <span class="old-price">৳3500</span>
+                        </div>
+                        <button class="add-cart-btn" onclick="addToCart(this)" aria-label="Add to Cart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 5: Baby Items -->
+            <article class="product-card" data-category="baby-items">
+                <div class="card-image-wrapper" onclick="openProductModal(this)">
+                    <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
+                    <img src="https://picsum.photos/seed/baby1/400/400" alt="Cotton Baby Romper" class="card-image">
+                </div>
+                <div class="card-content">
+                    <span class="product-category">Baby Items</span>
+                    <h3 class="product-title">Organic Cotton Romper</h3>
+                    <div class="rating">★★★★★ <span>(30)</span></div>
+                    <div class="card-footer">
+                        <div class="price-group">
+                            <span class="current-price">৳850</span>
+                        </div>
+                        <button class="add-cart-btn" onclick="addToCart(this)" aria-label="Add to Cart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 6: Accessories (Sunglasses) -->
+            <article class="product-card" data-category="accessories">
+                <div class="card-image-wrapper" onclick="openProductModal(this)">
+                    <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
+                    <img src="https://picsum.photos/seed/sun1/400/400" alt="Aviator Sunglasses" class="card-image">
+                </div>
+                <div class="card-content">
+                    <span class="product-category">Accessories</span>
+                    <h3 class="product-title">Unisex Aviator Sunglasses</h3>
+                    <div class="rating">★★★☆☆ <span>(12)</span></div>
+                    <div class="card-footer">
+                        <div class="price-group">
+                            <span class="current-price">৳1200</span>
+                        </div>
+                        <button class="add-cart-btn" onclick="addToCart(this)" aria-label="Add to Cart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 7: Sneakers -->
+            <article class="product-card" data-category="sneakers">
+                <div class="card-image-wrapper" onclick="openProductModal(this)">
+                    <span class="badge badge-new">New</span>
+                    <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
+                    <img src="https://picsum.photos/seed/shoe2/400/400" alt="High Top Sneakers" class="card-image">
+                </div>
+                <div class="card-content">
+                    <span class="product-category">Sneakers</span>
+                    <h3 class="product-title">Street High Top</h3>
+                    <div class="rating">★★★★☆ <span>(55)</span></div>
+                    <div class="card-footer">
+                        <div class="price-group">
+                            <span class="current-price">৳4100</span>
+                        </div>
+                        <button class="add-cart-btn" onclick="addToCart(this)" aria-label="Add to Cart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Product 8: Ladies Bag -->
+            <article class="product-card" data-category="ladies-bag">
+                <div class="card-image-wrapper" onclick="openProductModal(this)">
+                    <button class="wishlist-btn" onclick="toggleWishlist(this)" aria-label="Add to Wishlist">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                            </path>
+                        </svg>
+                    </button>
+                    <img src="https://picsum.photos/seed/bag2/400/400" alt="Mini Crossbody Bag" class="card-image">
+                </div>
+                <div class="card-content">
+                    <span class="product-category">Ladies Bag</span>
+                    <h3 class="product-title">Mini Crossbody Satchel</h3>
+                    <div class="rating">★★★★★ <span>(92)</span></div>
+                    <div class="card-footer">
+                        <div class="price-group">
+                            <span class="current-price">৳2150</span>
+                        </div>
+                        <button class="add-cart-btn" onclick="addToCart(this)" aria-label="Add to Cart">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                            </svg>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <div id="toastContainer" class="toast-container">Action Successful</div>
+
+    <script src="/js/shop.js"></script>
+</body>
+
+</html>
