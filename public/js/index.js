@@ -127,7 +127,7 @@ allSliders.forEach(container => {
     }
 });
 
-
+// ===============toast and wishlist start==================
 function toggleWishlist(btn) {
     btn.classList.toggle('active');
     if (btn.classList.contains('active')) {
