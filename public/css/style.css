@@ -618,6 +618,8 @@
      height: 100%;
      object-fit: cover;
      transition: transform 0.5s ease;
+     /* border: 1px solid black;
+     border-radius: 12px; */
  }
 
  .product-card:hover .card-image {
