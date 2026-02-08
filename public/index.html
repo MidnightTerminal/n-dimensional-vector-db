@@ -51,6 +51,27 @@
         </nav>
     </header>
 
+    <!-- ===========Cart Functionality============== -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <span class="close-cart" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+
+        <div class="cart-items" id="cartItemsContainer">
+            <div class="empty-cart-msg">Your cart is empty</div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotalAmount">৳0</span>
+            </div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
     <div class="main-container">
         <main class="slider-wrapper" id="sliderWrapper">
 
@@ -1257,26 +1278,7 @@
 
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- ===========Cart Functionality============== -->
-    <div class="cart-overlay" id="cartOverlay"></div>
-    <div class="cart-sidebar" id="cartSidebar">
-        <div class="cart-header">
-            <h3>Your Cart</h3>
-            <span class="close-cart" id="closeCartBtn"><i class="fa-solid fa-xmark"></i></span>
-        </div>
 
-        <div class="cart-items" id="cartItemsContainer">
-            <div class="empty-cart-msg">Your cart is empty</div>
-        </div>
-
-        <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cartTotalAmount">৳0</span>
-            </div>
-            <button class="checkout-btn">Checkout</button>
-        </div>
-    </div>
 
 
     <!-- =============details popup========== -->
@@ -1322,6 +1324,8 @@
     <!-- =====================details popup end================= -->
 
 
+
+    <!-- ===============subscribe section start=================== -->
     <div class="subscribe-container">
         <div class="subscribe-content">
             <h1 class="subscribe-header">Subscribe & Get <span class="highlight">15% Off</span> Your First Order</h1>

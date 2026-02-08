@@ -91,11 +91,6 @@
         height: 35px;
     }
 
-    .modal-body {
-        flex-direction: row;
-        height: 500px;
-    }
-
      .section-header {
          flex-direction: column;
          align-items: center;
