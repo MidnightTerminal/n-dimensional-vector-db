@@ -6,7 +6,7 @@ const allProducts = [
         title: "Luxury Leather Tote",
         price: "৳2499",
         oldPrice: "৳2000", 
-        image: "/assets/ladies-bag/1.jpg",
+        image: "/assets/ladies bag/1.jpg",
         rating: "4",
         review: 45,
         badge: { text: "-20% OFF", class: "badge-new" }
