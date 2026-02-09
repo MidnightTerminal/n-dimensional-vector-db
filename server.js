@@ -174,7 +174,7 @@ app.post('/api/checkout', async (req, res) => {
         // }
 
 
-        // D. Send Email to Admin (Detailed HTML Version)
+        // D. Send Email to Admin (Text & Code Only)
         const adminMailOptions = {
             from: process.env.EMAIL_USER,
             to: process.env.EMAIL_USER,
@@ -197,25 +197,27 @@ app.post('/api/checkout', async (req, res) => {
                         <table style="width: 100%; border-collapse: collapse;">
                             <thead>
                                 <tr style="background-color: #f2f2f2;">
-                                <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Code</th>
+                                    <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Code</th>
                                     <th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Product</th>
                                     <th style="padding: 8px; text-align: center; border: 1px solid #ddd;">Qty</th>
                                     <th style="padding: 8px; text-align: right; border: 1px solid #ddd;">Price</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                ${cart.map(item =>{
-                                    const pCode = item.code || item.product_code || 'N/A';
-                                    return `
+                                ${cart.map(item => {
+                // Robust check for the code
+                const pCode = item.code || item.product_code || 'N/A';
+                return `
                                     <tr>
-                                    <td style="padding: 8px; border: 1px solid #ddd; font-size: 12px; color: #555;">
-                                        ${pCode}
-                                    </td>
+                                        <td style="padding: 8px; border: 1px solid #ddd; font-weight: bold; color: #555;">
+                                            ${pCode}
+                                        </td>
                                         <td style="padding: 8px; border: 1px solid #ddd;">${item.title}</td>
                                         <td style="padding: 8px; text-align: center; border: 1px solid #ddd;">${item.quantity}</td>
                                         <td style="padding: 8px; text-align: right; border: 1px solid #ddd;">৳${item.price}</td>
                                     </tr>
-                                `;}).join('')}
+                                `;
+            }).join('')}
                             </tbody>
                         </table>
 
