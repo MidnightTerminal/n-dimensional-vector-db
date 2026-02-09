@@ -34,6 +34,18 @@ const mixedProducts = [
     rating: 4,
     reviews: 45,
     badge: { text: "-20% OFF", class: "badge-new" }
+  },
+  {
+    id: 4,
+    code: "HSB567",
+    category:"ladies-item",
+    title: "Premium Clothes",
+    image: "/assets/ladies-items/1.jpeg",
+    price: "৳4500",
+    oldPrice: "৳5200", 
+    rating: 4,
+    reviews: 45,
+    badge: { text: "-20% OFF", class: "badge-new" }
   }
 ];
 
