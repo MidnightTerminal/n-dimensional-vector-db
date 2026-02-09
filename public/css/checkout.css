@@ -1,8 +1,5 @@
-/* ================= CHECKOUT PAGE STYLES ================= */
-
 :root {
     --primary-color: #00b894;
-    /* Teal Green */
     --primary-dark: #008f72;
     --text-color: #2d3436;
     --text-light: #636e72;
@@ -71,11 +68,9 @@
 
     .checkout-summary-section {
         order: -1;
-        /* Show summary first on mobile */
     }
 }
 
-/* Sections */
 .checkout-form-section,
 .summary-card {
     background: white;
@@ -92,7 +87,6 @@
     font-size: 1.25rem;
 }
 
-/* --- Form Section --- */
 
 
 /* h2 {
@@ -104,6 +98,10 @@
 
 .form-group {
     margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    font-weight: bold;
 }
 
 .form-row {
@@ -140,7 +138,6 @@ textarea:focus {
     box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.15);
 }
 
-/* Payment Options Grid */
 .payment-options {
     display: flex;
     flex-direction: column;
@@ -160,12 +157,10 @@ textarea:focus {
     position: relative;
 }
 
-/* Hide the actual radio button circle */
 .payment-option input[type="radio"] {
     display: none;
 }
 
-/* Selected State */
 .payment-option.selected {
     border-color: var(--primary-color);
     background: #eff6ff;
@@ -185,7 +180,6 @@ textarea:focus {
     object-fit: contain;
 }
 
-/* Check Icon Logic */
 .check-icon {
     color: var(--primary-color);
     opacity: 0;
@@ -198,12 +192,10 @@ textarea:focus {
     transform: scale(1.2);
 }
 
-/* Payment Details (Hidden/Show) */
 .payment-details {
     margin-top: 20px;
     padding: 20px;
     background: #fff0f5;
-    /* Light pink for bKash vibe */
     border-radius: 8px;
     border: 1px solid #ffcce0;
     animation: fadeIn 0.3s ease;
@@ -271,7 +263,6 @@ textarea:focus {
     color: #666;
 }
 
-/* Totals */
 .summary-row {
     display: flex;
     justify-content: space-between;

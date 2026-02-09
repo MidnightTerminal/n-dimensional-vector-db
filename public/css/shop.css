@@ -246,12 +246,12 @@
 
  .current-price {
      font-weight: 700;
-     font-size: 1.1rem;
+     font-size: 1.2rem;
      color: var(--showcase-primary-color);
  }
 
  .old-price {
-     font-size: 0.85rem;
+     font-size: 0.9rem;
      text-decoration: line-through;
      color: #b0b0b0;
  }

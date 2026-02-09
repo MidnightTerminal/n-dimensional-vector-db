@@ -36,19 +36,19 @@ const transporter = nodemailer.createTransport({
     port: 465,
     secure: true,
     auth: {
-        user: process.env.EMAIL_USER, // Your cPanel email
-        pass: process.env.EMAIL_PASS  // Your cPanel email password
+        user: process.env.EMAIL_USER, 
+        pass: process.env.EMAIL_PASS 
     }
 });
 
-let twilioClient;
-if (process.env.TWILIO_SID && process.env.TWILIO_AUTH_TOKEN) {
-    try {
-        twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
-    } catch (err) {
-        console.warn("Twilio not configured properly:", err.message);
-    }
-}
+// let twilioClient;
+// if (process.env.TWILIO_SID && process.env.TWILIO_AUTH_TOKEN) {
+//     try {
+//         twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
+//     } catch (err) {
+//         console.warn("Twilio not configured properly:", err.message);
+//     }
+// }
 
 
 app.post('/api/checkout', async (req, res) => {
@@ -177,7 +177,7 @@ app.post('/api/checkout', async (req, res) => {
         // D. Send Email to Admin (Detailed HTML Version)
         const adminMailOptions = {
             from: process.env.EMAIL_USER,
-            to: process.env.EMAIL_USER, // Sends to YOU
+            to: process.env.EMAIL_USER, 
             subject: `🔔 New Order: ${orderRef} - ৳${total}`,
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #333;">

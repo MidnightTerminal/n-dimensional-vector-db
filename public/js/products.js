@@ -5,9 +5,11 @@ const allProducts = [
         code: "HSB001",
         title: "Luxury Leather Tote",
         price: "৳2499",
+        oldPrice: "৳2000", 
         image: "/assets/ladies-bag/1.jpg",
-        rating: 45,
-        isNew: true
+        rating: "4",
+        review: 45,
+        badge: { text: "-20% OFF", class: "badge-new" }
     },
 
     {
@@ -17,8 +19,9 @@ const allProducts = [
         title: "Air Jordan Retro",
         price: "৳8500",
         image: "/assets/sneakers/1.jpeg",
-        rating: 12,
-        isNew: true
+        rating: "5",
+        review: 12,
+        badge: null
     },
     {
         id: 3,
@@ -26,9 +29,11 @@ const allProducts = [
         code: "HSS001",
         title: "Urban Runner",
         price: "৳3200",
+        oldPrice: "৳2500", 
         image: "/assets/sneakers/2.jpeg",
-        rating: 8,
-        isNew: false
+        rating: "4",
+        review: 8,
+        badge: { text: "-20% OFF", class: "badge-new" }
     },
     {
         id: 4,
@@ -37,8 +42,9 @@ const allProducts = [
         title: "Kids Toys",
         price: "৳3200",
         image: "/assets/kids item/2.jpeg",
-        rating: 8,
-        isNew: false
+        rating: "4",
+        review: 8,
+        badge: { text: "HOT", class: "badge-new" }
     },
     {
         id: 5,
@@ -47,8 +53,9 @@ const allProducts = [
         title: "Noise Cancelling Earphone",
         price: "৳3200",
         image: "/assets/gadgets/4.webp",
-        rating: 8,
-        isNew: false
+        rating: "4",
+        review: 8,
+        badge: { text: "NEW", class: "badge-new" }
     },
     {
         id: 6,
@@ -56,9 +63,11 @@ const allProducts = [
         code: "HSCL001",
         title: "Premium Clothes",
         price: "৳3200",
+        oldPrice: "৳3000", 
         image: "/assets/ladies items/3.jpeg",
-        rating: 8,
-        isNew: false
+        rating: "4",
+        review: 8,
+        badge: { text: "-20% OFF", class: "badge-new" }
     },
 
 ];
@@ -75,7 +84,15 @@ const renderCategory = (targetType, containerId) => {
     let htmlContent = "";
 
     filteredProducts.forEach(product => {
-        const badgeHtml = product.isNew ? `<span class="badge badge-new">New</span>` : '';
+        const stars = "★".repeat(product.rating) + "☆".repeat(5 - product.rating);
+
+        const badgeHtml = product.badge
+            ? `<span class="badge ${product.badge.class}">${product.badge.text}</span>`
+            : '';
+
+        const oldPriceHtml = product.oldPrice
+            ? `<span class="old-price">${product.oldPrice}</span>`
+            : '';
 
         htmlContent += `
       <article class="product-card">
@@ -86,8 +103,14 @@ const renderCategory = (targetType, containerId) => {
           <div class="card-content">
               <span class="product-category">${product.code.toUpperCase()}</span>
               <h3 class="product-title">${product.title}</h3>
+             <div class="rating">
+                    ${stars} <span>(${product.review})</span>
+            </div>
               <div class="card-footer">
-                  <span class="current-price">${product.price}</span>
+                    <div class="price-group">
+                      <span class="current-price">${product.price}</span>
+                      ${oldPriceHtml}
+                  </div>
                   <button class="add-cart-btn" onclick="addToCart(this)">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
