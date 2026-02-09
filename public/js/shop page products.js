@@ -26,7 +26,7 @@ const mixedProducts = [
   {
     id: 3,
     code: "HSB567",
-    category:"baby-items",
+    category:"baby-item",
     title: "Super Car",
     image: "/assets/kids item/1.jpeg",
     price: "৳4500",
