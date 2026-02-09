@@ -92,6 +92,9 @@ function addToCart(btnElement) {
     const priceText = productCard.querySelector('.current-price').innerText;
     const imageSrc = productCard.querySelector('.card-image').src;
     
+const codeElement = productCard.querySelector('.product-category');
+    const productCode = codeElement ? codeElement.innerText : 'N/A';
+
     const price = parseFloat(priceText.replace(/[^0-9.]/g, ''));
 
     const existingItem = cart.find(item => item.title === title);
@@ -104,6 +107,7 @@ function addToCart(btnElement) {
             title,
             price,
             image: imageSrc,
+            code: productCode,
             quantity: 1
         };
         cart.push(newItem);

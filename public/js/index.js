@@ -105,12 +105,12 @@ const allSliders = document.querySelectorAll('.slider-container');
 allSliders.forEach(container => {
     const sliderWrapper = container.querySelector('.slider-track-wrapper');
     const prevBtn = container.querySelector('.nav-btn.prev');
-    const nextBtn = container.querySelector('.nav-btn.next'); 
-    
+    const nextBtn = container.querySelector('.nav-btn.next');
+
     const scrollAmount = 280;
 
     if (sliderWrapper && nextBtn && prevBtn) {
-        
+
         nextBtn.addEventListener('click', () => {
             sliderWrapper.scrollBy({
                 left: scrollAmount,
@@ -194,11 +194,14 @@ cartOverlay.addEventListener('click', toggleCart);
 function addToCart(btnElement) {
 
     const productCard = btnElement.closest('.product-card');
-    
+
     const title = productCard.querySelector('.product-title').innerText;
     const priceText = productCard.querySelector('.current-price').innerText;
     const imageSrc = productCard.querySelector('.card-image').src;
-    
+
+    const codeElement = productCard.querySelector('.product-category');
+    const productCode = codeElement ? codeElement.innerText : 'N/A';
+
     const price = parseFloat(priceText.replace(/[^0-9.]/g, ''));
 
     const existingItem = cart.find(item => item.title === title);
@@ -211,6 +214,7 @@ function addToCart(btnElement) {
             title,
             price,
             image: imageSrc,
+            code: productCode,
             quantity: 1
         };
         cart.push(newItem);
@@ -288,7 +292,7 @@ document.querySelector('.checkout-btn').addEventListener('click', () => {
         showToast("Your cart is empty!", "cart");
         return;
     }
-    window.location.href = '/checkout'; 
+    window.location.href = '/checkout';
 });
 
 
@@ -316,7 +320,7 @@ function openProductModal(imageWrapperElement) {
     const ratingHTML = card.querySelector('.rating').innerHTML;
 
     const customDesc = card.getAttribute('data-description');
-    const description = customDesc ? customDesc : 
+    const description = customDesc ? customDesc :
         `Experience the premium quality of our ${title}. Meticulously crafted for style and durability, this is the perfect addition to your collection.`;
 
     modalImage.src = imageSrc;
@@ -325,7 +329,7 @@ function openProductModal(imageWrapperElement) {
     modalPrice.innerText = price;
     modalRating.innerHTML = ratingHTML;
     modalDesc.innerHTML = description;
-    
+
     currentModalQty = 1;
     modalQtySpan.innerText = currentModalQty;
 
@@ -375,7 +379,7 @@ function addModalProductToCart() {
     if (typeof updateCart === 'function') {
         updateCart();
     }
-    
+
     closeModal();
 }
 
