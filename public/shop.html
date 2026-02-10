@@ -14,8 +14,7 @@
 <body>
     <header class="site-header">
         <nav class="navbar">
-            <a href="/" class="navbar-logo"><img src="assets/logo.png" width="80px" height="60px" alt=""
-                    srcset=""></a>
+            <a href="/" class="navbar-logo"><img src="assets/logo.png" width="80px" height="60px" alt="" srcset=""></a>
 
             <ul class="nav-links" id="nav-links">
                 <i class="fa-solid fa-xmark" id="close-menu-btn"></i>
@@ -100,10 +99,29 @@
         </section>
     </main>
 
+    <!-- =================Pagination================== -->
+    <div class="pagination-container">
+        <button id="prevBtn" class="pagination-btn" onclick="previousPage()">← Previous</button>
+
+        <div class="page-numbers" id="pageNumbers">
+
+        </div>
+
+        <button id="nextBtn" class="pagination-btn" onclick="nextPage()">Next →</button>
+    </div>
+
+    <div class="items-per-page">
+        <label for="itemsPerPage">Items per page:</label>
+        <select id="itemsPerPage" onchange="changeItemsPerPage()">
+            <option value="6">6</option>
+            <option value="12" selected>12</option>
+            <option value="24">24</option>
+        </select>
+    </div>
     <div id="toastContainer" class="toast-container"></div>
 
 
-    <!-- FOOTER START -->
+<!-- ===================== FOOTER START ======================= -->
     <footer class="site-footer">
 
         <div class="footer-container">
@@ -218,7 +236,6 @@
             <p>&copy; 2026 Horizontal Shop Ltd. All rights reserved.</p>
         </div>
     </footer>
-    <!-- FOOTER END -->
 </body>
 
 
