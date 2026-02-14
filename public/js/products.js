@@ -1,8 +1,8 @@
 const allProducts = [
     {
         id: 1,
-        type: "bag",
         code: "HSB001",
+        type: "bag",
         title: "Luxury Leather Tote",
         price: "৳2499",
         oldPrice: "৳2000", 
@@ -14,8 +14,8 @@ const allProducts = [
 
     {
         id: 2,
-        type: "sneaker",
         code: "HSS001",
+        type: "sneaker",
         title: "Air Jordan Retro",
         price: "৳8500",
         image: "/assets/sneakers/1.jpeg",
@@ -25,8 +25,8 @@ const allProducts = [
     },
     {
         id: 3,
-        type: "sneaker",
         code: "HSS001",
+        type: "sneaker",
         title: "Urban Runner",
         price: "৳3200",
         oldPrice: "৳2500", 
@@ -37,8 +37,8 @@ const allProducts = [
     },
     {
         id: 4,
-        type: "kids-item",
         code: "HSK001",
+        type: "kids-item",
         title: "Kids Toys",
         price: "৳3200",
         image: "/assets/kids item/2.jpeg",
@@ -48,8 +48,8 @@ const allProducts = [
     },
     {
         id: 5,
-        type: "gadgets-accessories",
         code: "HSGA001",
+        type: "gadgets-accessories",
         title: "Noise Cancelling Earphone",
         price: "৳3200",
         image: "/assets/gadgets/4.webp",
@@ -59,8 +59,8 @@ const allProducts = [
     },
     {
         id: 6,
-        type: "ladies-item",
         code: "HSCL001",
+        type: "ladies-item",
         title: "Premium Clothes",
         price: "৳3200",
         oldPrice: "৳3000", 
@@ -96,7 +96,7 @@ const renderCategory = (targetType, containerId) => {
 
         htmlContent += `
       <article class="product-card">
-          <div class="card-image-wrapper">
+          <div class="card-image-wrapper" onclick="openProductModal(this)">
               ${badgeHtml}
               <img src="${product.image}" alt="${product.title}" class="card-image">
           </div>

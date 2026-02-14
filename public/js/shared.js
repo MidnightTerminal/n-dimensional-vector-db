@@ -16,7 +16,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// ===============nav ba end=================
+// ===============navbar end=================
 
 
 
@@ -188,7 +188,7 @@ document.querySelector('.checkout-btn').addEventListener('click', () => {
     window.location.href = '/checkout.html'; 
 });
 
-// ===================product details popup=============
+// ===================product details popup=====================
 
 // const productModal = document.getElementById('productModal');
 // const modalImage = document.getElementById('modalImage');

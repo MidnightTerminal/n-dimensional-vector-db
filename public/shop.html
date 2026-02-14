@@ -20,7 +20,7 @@
                 <i class="fa-solid fa-xmark" id="close-menu-btn"></i>
 
                 <li class="nav-item hover-underline"><a href="/">Home</a></li>
-                <li class="nav-item hover-underline"><a href="">About</a></li>
+                <li class="nav-item hover-underline"><a href="#">About</a></li>
 
                 <li class="nav-item dropdown hover-underline active" id="shop-dropdown">
                     <a href="/shop">Shop</a>
@@ -29,7 +29,7 @@
                         <li><a href="#" class="dropdown-item">Clothing</a></li>
                     </ul> -->
                 </li>
-                <li class="nav-item hover-underline"><a href="">Contact</a></li>
+                <li class="nav-item hover-underline"><a href="#">Contact</a></li>
                 <li class="nav-item hover-underline"><i class="far fa-user profile-icon"></i>My Profile</li>
             </ul>
 
@@ -119,6 +119,48 @@
         </select>
     </div>
     <div id="toastContainer" class="toast-container"></div>
+
+
+    
+    <!-- ================= Details Popup================= -->
+    <div class="product-modal-overlay" id="productModal">
+        <div class="product-modal-content">
+            <button class="close-modal-btn" onclick="closeModal()">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <img id="modalImage" src="" alt="Product Detail">
+                </div>
+
+                <div class="modal-info-container">
+                    <span class="modal-category" id="modalCategory">Category</span>
+                    <h2 class="modal-title" id="modalTitle">Product Title</h2>
+                    <div class="modal-rating" id="modalRating">★★★★★ (25)</div>
+                    <p class="modal-description" id="modalDescription">
+                        This is a premium quality product designed for your daily needs.
+                        It features durable materials and a modern aesthetic perfect for any occasion.
+                    </p>
+
+                    <div class="modal-price-row">
+                        <span class="modal-price" id="modalPrice">৳0</span>
+                    </div>
+
+                    <div class="modal-actions">
+                        <div class="quantity-selector">
+                            <button onclick="adjustModalQty(-1)">-</button>
+                            <span id="modalQty">1</span>
+                            <button onclick="adjustModalQty(1)">+</button>
+                        </div>
+                        <button class="add-cart-btn modal-btn" onclick="addModalProductToCart()">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 <!-- ===================== FOOTER START ======================= -->
