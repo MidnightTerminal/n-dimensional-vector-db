@@ -44,12 +44,18 @@
         color: var(--primary-color);
     }
 
-    .search-input {
-        width: 120px;
+   .search-container {
+        width: 140px; /* Smaller width for tablets/mobile */
     }
-
-    .search-input:focus {
-        width: 150px;
+    
+    .search-container:focus-within {
+        width: 180px; /* Expand slightly less on mobile */
+    }
+    
+    /* Ensure the input text inside doesn't overflow */
+    .search-input {
+        width: 100%; 
+        min-width: 0; /* Critical for flex items to shrink properly */
     }
 
     .dropdown-menu {
@@ -116,9 +122,10 @@
     .card-image-wrapper {
         height: 250px;
     }
+
 }
 
-@media (max-width: 480px) {
+@media (max-width: 550px) {
     .cart-sidebar {
         width: 85%;
     }
@@ -137,6 +144,18 @@
 
     .modal-image-container{
         width: 50vw;
+    }
+
+    .product-section-header {
+        flex-direction: column;
+        align-items: flex-start; 
+        gap: 10px;
+    }
+    
+    .product-section-header .view-all-link {
+        align-self: flex-start; 
+        width: auto;            
+        justify-content: flex-start; 
     }
 
 }

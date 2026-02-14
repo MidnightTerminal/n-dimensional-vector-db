@@ -13,7 +13,6 @@
  }
 
  body {
-     /* font-family: 'Segoe UI', sans-serif; */
      background-color: var(--bg-light);
      color: var(--text-dark);
  }
@@ -157,31 +156,36 @@
      gap: 1.5rem;
  }
 
- .search-container {
-     display: flex;
-     align-items: center;
- }
+.search-container { 
+    display: flex; 
+    align-items: center; 
+    border: 1px solid #a3a4a8;   
+    border-radius: 20px;       
+    background: var(--bg-light); 
+    padding-right: 15px;       
+    width: 200px; 
+    transition: all 0.3s ease;
+}
 
- .search-input {
-     padding: 0.5rem 1rem;
-     border: 1px solid #a3a4a8;
-     border-radius: 20px;
-     background: var(--bg-light);
-     width: 200px;
-     outline: none;
-     transition: 0.3s;
- }
+.search-input { 
+    border: none; 
+    background: transparent; 
+    outline: none; 
+    padding: 0.5rem 1rem; 
+    width: 100%; 
+    color: var(--text-dark); 
+}
 
- .search-icon {
-     position: relative;
-     right: 25px;
-     color: #777;
- }
+.search-icon { 
+    color: #777; 
+    cursor: pointer;
+}
 
- .search-input:focus {
-     border-color: var(--primary-color);
-     width: 240px;
- }
+.search-container:focus-within { 
+    border-color: var(--primary-color); 
+    width: 240px; 
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
 
  .cart-icon-wrapper {
      cursor: pointer;
@@ -509,12 +513,11 @@
 
  .showcase-section h1 {
      text-align: center;
-     margin-bottom: 20px;
-     /* border: 1px solid black; */
-     align-items: center;
-     /* font-size: 40px; */
+     /* margin-bottom: 20px; */
+     padding: 10px 0;
      background-color: #2563eb;
      color: white;
+     border-radius: 10px;
  }
 
  .product-section-header {
@@ -538,6 +541,7 @@
  .section-title p {
      color: var(--secondary-text);
      font-size: 0.85rem;
+     font-weight: 200;
  }
 
  .view-all-link {
@@ -579,7 +583,6 @@
      gap: 20px;
  }
 
-
  .product-card {
      flex: 0 0 260px;
      background: var(--card-bg);
@@ -604,6 +607,7 @@
      width: 100%;
      height: 260px;
      overflow: hidden;
+     cursor: pointer;
      background-color: #f9f9f9;
  }
 
