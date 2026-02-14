@@ -525,7 +525,7 @@
 
  .modal-image-container {
      flex: 1;
-     width: 400px;
+     width: 50%;
      height: 400px;
      background: #f9fafb;
      display: flex;

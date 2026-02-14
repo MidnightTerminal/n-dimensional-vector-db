@@ -13,7 +13,7 @@
  }
 
  body {
-     font-family: 'Segoe UI', sans-serif;
+     /* font-family: 'Segoe UI', sans-serif; */
      background-color: var(--bg-light);
      color: var(--text-dark);
  }
@@ -510,19 +510,19 @@
  .showcase-section h1 {
      text-align: center;
      margin-bottom: 20px;
-     font-family: Agency FB;
-     border: 1px solid black;
+     /* border: 1px solid black; */
      align-items: center;
-     font-size: 40px;
+     /* font-size: 40px; */
      background-color: #2563eb;
      color: white;
  }
 
  .product-section-header {
      display: flex;
-     justify-content: space-between;
-     align-items: flex-end;
+     justify-content:space-between;
+     align-items: flex-start;
      margin: 24px 0;
+     gap: 20px;
  }
 
  .section-title h2 {
@@ -534,12 +534,6 @@
      align-items: center;
      gap: 10px;
  }
-
- .title-icon {
-    width: 28px; 
-    height: 28px;
-    color: var(--cta-color); 
-}
 
  .section-title p {
      color: var(--secondary-text);
@@ -553,14 +547,14 @@
      font-size: 0.9rem;
      border-bottom: 2px solid transparent;
      transition: var(--transition);
-     display: inline-flex;
+     display: flex;
      align-items: center;
-     gap: 4px;
+     gap: 2px;
  }
 
  .view-all-link:hover {
-     border-bottom-color: var(--showcase-primary-color);
-     color: var(--cta-hover);
+     border-bottom-color: #2563eb;
+     color: #2563eb;
  }
 
  .slider-container {
@@ -1139,7 +1133,7 @@
 
  .modal-image-container {
      flex: 1;
-     width: 400px;
+     width: 50%;
      height: 400px;
      background: #f9fafb;
      display: flex;
