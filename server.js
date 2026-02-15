@@ -98,7 +98,7 @@ app.post('/api/checkout', async (req, res) => {
         console.log(`✅ Order ${orderRef} saved to MySQL.`);
         res.json({ success: true, orderId: orderRef });
 
-        // C. Send Email to Customer (Professional HTML Template)
+        // C. Send Email to Customer 
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: customer.email,
@@ -205,7 +205,7 @@ app.post('/api/checkout', async (req, res) => {
                             </thead>
                             <tbody>
                                 ${cart.map(item => {
-                // Robust check for the code
+
                 const pCode = item.code || item.product_code || 'N/A';
                 return `
                                     <tr>
